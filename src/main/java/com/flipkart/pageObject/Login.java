@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.Baseclass.BaseClass;
+import com.Baseclass.WebTestBase;
 
-public class Login extends BaseClass{
+public class Login extends WebTestBase{
 	private static Login login;
 	private static WebDriver drivers;
 	private Login() {}

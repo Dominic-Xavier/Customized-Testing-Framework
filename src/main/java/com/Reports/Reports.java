@@ -9,7 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
-import com.Baseclass.BaseClass;
+import com.Baseclass.WebTestBase;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -19,7 +19,7 @@ import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
-public class Reports extends BaseClass{
+public class Reports extends WebTestBase{
 	
 	private static ExtentReports reports;
 	private static ExtentSparkReporter extentx;

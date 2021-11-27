@@ -11,59 +11,84 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelSheet {
 	
-	private String filePath = "./TestData.xls";
-	private String sheetName = "TestScenario";
-	private FileInputStream inputStream;
-	private Workbook workbook;
-	private Sheet sheet;
-	private Map<String, Object> map = new HashMap();
-	private int totalNoOfRows = 600000;
+	private static ExcelSheet excelSheet = null;
 	
-	public String getData(int row) throws IOException {
+	private static final String filePath = "./EnvConfig.xls";
+	private static final String sheetName = "Config";
+	private static FileInputStream inputStream;
+	private static Workbook workbook;
+	private static Sheet sheet;
+	private static String[][] values; 
+	private static Map<String, String> map = new HashMap<>();
+	private static int count = 0;
+	
+	private ExcelSheet() {
+		
+	}
+	
+	public synchronized static ExcelSheet getExcelSheet() {
+		if(excelSheet==null) {
+			excelSheet = new ExcelSheet();
+		}
+		return excelSheet;
+	}
+	
+	private Map<String, String> getData() throws IOException {
+		
 		inputStream = new FileInputStream(new File(filePath));
 		workbook = new HSSFWorkbook(inputStream);
 		sheet = workbook.getSheet(sheetName);
 		String value = null;
-		for (int i = 1; i<row; i++) {
+		int totalRows = sheet.getPhysicalNumberOfRows();
+		values = new String[totalRows][2];
+		for (int i=1; i<totalRows; i++) {
 			Row rows = sheet.getRow(i);
-			for(int j=0;j<sheet.getRow(i).getPhysicalNumberOfCells();j++) {
+			int totalcolumns = sheet.getRow(i).getPhysicalNumberOfCells();
+			for(int j=0;j<totalcolumns;j++) {
 				Cell cell = rows.getCell(j);
 				switch (cell.getCellType()) {
 				case NUMERIC:
 					int numericCellValue = (int)cell.getNumericCellValue();
 					value = String.valueOf(numericCellValue);
+					values[i][j] = value;
 				break;
 				
 				case STRING:
 					value = cell.getStringCellValue();
+					values[i][j] = value;
 				break;
  				
 				case BOOLEAN:
 					value = String.valueOf(cell.getBooleanCellValue());
+					values[i][j] = value;
 				break;
 				}
 			}
 		}
-		return value;
+		Map<String, String> getvalueAsMap = getvalueAsMap(values);
+		count++;
+		return getvalueAsMap;
 	}
 	
-	public int findRow(String testcaseName) throws IOException {
-		int emptyRow = 0;
-		for(int row=0; row<totalNoOfRows; row++) {
-			String data = getData(row);
-			if(data.isBlank() || data.isEmpty() || data==null)
-				emptyRow++;
-			else
-				emptyRow = 0;
-			if(emptyRow==15)
-				break;
-			if(!data.equals(testcaseName))
-				continue;
-			return row;
-		}
-		return -1;
+	private static Map<String, String> getvalueAsMap(String[][] list ) {
+		
+	    for (String[] m : list) {
+	      if (map.put(m[0], m[1]) != null) {
+	        throw new IllegalStateException("Duplicate key");
+	      }
+	    }
+	    return map;
+	}
+	
+	public String getData(String key) throws IOException {
+		if(count==0)
+			getExcelSheet().getData();
+		return map.get(key);
 	}
 }
+
+

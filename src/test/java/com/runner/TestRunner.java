@@ -12,6 +12,7 @@ import io.cucumber.testng.CucumberOptions;
 		dryRun = false,
 		publish = true,
 		plugin = {"pretty","json:Reports/cucumber-reports/Cucumber.json", "html:Reports/cucumber-reports.html",
+				
 				"rerun:target/failedTestCases.txt"}
 )
 
