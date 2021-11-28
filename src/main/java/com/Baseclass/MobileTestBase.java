@@ -10,7 +10,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
-public class MobileTestBase {
+public class MobileTestBase extends WebTestBase{
 	
 	public static AppiumDriver<MobileElement> appiumDriver; 
 	private static DesiredCapabilities cap;

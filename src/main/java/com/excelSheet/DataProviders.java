@@ -13,41 +13,41 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ExcelSheet {
+public class DataProviders {
 	
-	private static ExcelSheet excelSheet = null;
+	private static DataProviders excelSheet = null;
 	
 	private static final String filePath = "./EnvConfig.xls";
-	private static final String sheetName = "Config";
+	private static final String sheetName = "Configuration";
 	private static FileInputStream inputStream;
 	private static Workbook workbook;
 	private static Sheet sheet;
 	private static String[][] values; 
-	private static Map<String, String> map = new HashMap<>();
-	private static int count = 0;
+	private static final Map<String, String> map = new HashMap<>();
+	private static boolean isgetDataExecuted = true;
 	
-	private ExcelSheet() {
-		
-	}
+	private DataProviders() {}
 	
-	public synchronized static ExcelSheet getExcelSheet() {
+	public synchronized static DataProviders getInstance() {
 		if(excelSheet==null) {
-			excelSheet = new ExcelSheet();
+			excelSheet = new DataProviders();
 		}
 		return excelSheet;
 	}
 	
-	private Map<String, String> getData() throws IOException {
+	private Map<String, String> getExcelSheet() throws IOException {
 		
 		inputStream = new FileInputStream(new File(filePath));
 		workbook = new HSSFWorkbook(inputStream);
 		sheet = workbook.getSheet(sheetName);
 		String value = null;
+		int totalcolumns = 2;
 		int totalRows = sheet.getPhysicalNumberOfRows();
+		System.out.println("Total No Of Rows "+totalRows);
 		values = new String[totalRows][2];
 		for (int i=1; i<totalRows; i++) {
 			Row rows = sheet.getRow(i);
-			int totalcolumns = sheet.getRow(i).getPhysicalNumberOfCells();
+			//int totalcolumns = sheet.getRow(i).getPhysicalNumberOfCells();
 			for(int j=0;j<totalcolumns;j++) {
 				Cell cell = rows.getCell(j);
 				switch (cell.getCellType()) {
@@ -70,7 +70,7 @@ public class ExcelSheet {
 			}
 		}
 		Map<String, String> getvalueAsMap = getvalueAsMap(values);
-		count++;
+		isgetDataExecuted = false;
 		return getvalueAsMap;
 	}
 	
@@ -85,8 +85,8 @@ public class ExcelSheet {
 	}
 	
 	public String getData(String key) throws IOException {
-		if(count==0)
-			getExcelSheet().getData();
+		if(isgetDataExecuted)
+			getExcelSheet();
 		return map.get(key);
 	}
 }

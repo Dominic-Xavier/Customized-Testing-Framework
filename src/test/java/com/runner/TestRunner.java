@@ -1,6 +1,10 @@
 package com.runner;
 
+import java.io.IOException;
+
 import org.testng.annotations.DataProvider;
+
+import com.excelSheet.DataProviders;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -18,9 +22,21 @@ import io.cucumber.testng.CucumberOptions;
 
 public class TestRunner extends AbstractTestNGCucumberTests{
 	
-	/*@Override
+	static String data;
+	
+	@Override
     @DataProvider(parallel = true)
     public Object[][] scenarios() {
-        return super.scenarios();
-    }*/
+		/*try {
+			data = DataProviders.getInstance().getData("Parallel Testing");
+			System.out.println("Data is "+data);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(data.toLowerCase().equals("yes"))*/
+			return super.scenarios();
+		/*else 
+			return null;*/
+    }
 }

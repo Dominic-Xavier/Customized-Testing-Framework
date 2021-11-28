@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-11-27T22:41:55 IST" name="Default suite" finished-at="2021-11-27T22:42:07 IST" duration-ms="12073">
+  <suite name="Suite" duration-ms="133196" started-at="2021-11-29T01:04:51 IST" finished-at="2021-11-29T01:07:04 IST">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@793f29ff]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@3439f68d]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-11-27T22:41:55 IST" name="Default test" finished-at="2021-11-27T22:42:07 IST" duration-ms="12073">
+    <test name="Flipkart" duration-ms="133196" started-at="2021-11-29T01:04:51 IST" finished-at="2021-11-29T01:07:04 IST">
       <class name="com.runner.TestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunner@793f29ff]" started-at="2021-11-27T22:41:55 IST" name="setUpClass" finished-at="2021-11-27T22:41:56 IST" duration-ms="447" status="PASS">
+        <test-method status="PASS" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunner@3439f68d]" name="setUpClass" is-config="true" duration-ms="439" started-at="2021-11-29T01:04:51 IST" finished-at="2021-11-29T01:04:51 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@36510e73]]>
+                <![CDATA[org.testng.TestRunner@5dd1c9f2]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@793f29ff]" started-at="2021-11-27T22:41:56 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2021-11-27T22:42:06 IST" duration-ms="10057" status="PASS">
+        <test-method status="FAIL" signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@3439f68d]" name="runScenario" duration-ms="131289" started-at="2021-11-29T01:04:51 IST" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2021-11-29T01:07:02 IST">
           <params>
             <param index="0">
               <value>
@@ -34,14 +34,45 @@
               </value>
             </param>
           </params>
+          <exception class="org.openqa.selenium.SessionNotCreatedException">
+            <message>
+              <![CDATA[Could not start a new session. Response code 500. Message: Connection refused (os error 111)
+Build info: version: '4.0.0', revision: '3a21814679'
+System info: host: 'dominic-To-be-filled-by-O-E-M', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.13.0-21-generic', java.version: '1.8.0_202'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [null, newSession {capabilities=[Capabilities {acceptInsecureCerts: true, browserName: firefox, moz:debuggerAddress: true, moz:firefoxOptions: {}}], desiredCapabilities=Capabilities {acceptInsecureCerts: true, browserName: firefox, moz:debuggerAddress: true, moz:firefoxOptions: {}}}]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: Connection refused (os error 111)
+Build info: version: '4.0.0', revision: '3a21814679'
+System info: host: 'dominic-To-be-filled-by-O-E-M', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.13.0-21-generic', java.version: '1.8.0_202'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [null, newSession {capabilities=[Capabilities {acceptInsecureCerts: true, browserName: firefox, moz:debuggerAddress: true, moz:firefoxOptions: {}}], desiredCapabilities=Capabilities {acceptInsecureCerts: true, browserName: firefox, moz:debuggerAddress: true, moz:firefoxOptions: {}}}]
+at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:126)
+at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:84)
+at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:62)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:156)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
+at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:246)
+at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:168)
+at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:198)
+at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:186)
+at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:164)
+at com.Baseclass.WebTestBase.getWebDriver(WebTestBase.java:55)
+at testSteps.Login.launchApplication(Login.java:37)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.SessionNotCreatedException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.TestRunner@793f29ff]" started-at="2021-11-27T22:42:06 IST" name="tearDownClass" finished-at="2021-11-27T22:42:07 IST" duration-ms="1540" status="PASS">
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:com.runner.TestRunner@3439f68d]" name="tearDownClass" is-config="true" duration-ms="1436" started-at="2021-11-29T01:07:02 IST" finished-at="2021-11-29T01:07:04 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
       </class> <!-- com.runner.TestRunner -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Flipkart -->
+  </suite> <!-- Suite -->
 </testng-results>
