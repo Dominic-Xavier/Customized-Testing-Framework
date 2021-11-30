@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
 import com.Baseclass.WebTestBase;
 import com.aventstack.extentreports.ExtentReports;
@@ -21,7 +22,7 @@ import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
-public class Reports extends WebTestBase{
+public class Reports {
 	
 	private static ExtentReports reports;
 	private static ExtentSparkReporter extentx;
@@ -29,6 +30,7 @@ public class Reports extends WebTestBase{
 	private static String classNames;
 	private static File report;
 	private static Reports reports1;
+	private static WebDriver driver;
 	
 	private Reports(Class<?> className) throws FolderNotCreated {
 		classNames = className.getName();
@@ -44,9 +46,10 @@ public class Reports extends WebTestBase{
 		extentx = new ExtentSparkReporter("./Reports/"+classNames);
 	}
 	
-	public synchronized static Reports getInstaice(Class<?> className) throws FolderNotCreated {
+	public synchronized static Reports getInstaice(Class<?> className, WebDriver drivers) throws FolderNotCreated {
 		if(reports1==null) 
 			reports1 = new Reports(className);
+		driver = drivers;
 		return reports1;
 	}
 	

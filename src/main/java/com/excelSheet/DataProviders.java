@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -12,10 +13,16 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class DataProviders {
-	
-	private static DataProviders excelSheet = null;
+import com.Baseclass.WebTestBase;
+import com.testNgClass.BrowserDriver;
+
+import net.bytebuddy.asm.Advice.This;
+
+public class DataProviders extends BrowserDriver{
 	
 	private static final String filePath = "./EnvConfig.xls";
 	private static final String sheetName = "Configuration";
@@ -25,18 +32,24 @@ public class DataProviders {
 	private static String[][] values; 
 	private static final Map<String, String> map = new HashMap<>();
 	private static boolean isgetDataExecuted = true;
+	private static final Map<String, By> elementDatas = new HashMap<String, By>();
+	public static WebDriver drivers;
+	//private static DataProviders dp;
 	
-	private DataProviders() {}
+	public DataProviders() {}
 	
-	public synchronized static DataProviders getInstance() {
-		if(excelSheet==null) {
-			excelSheet = new DataProviders();
-		}
-		return excelSheet;
+	public DataProviders(WebDriver driver) {
+		this.drivers = driver;
 	}
 	
-	private Map<String, String> getExcelSheet() throws IOException {
-		
+	/*public synchronized static DataProviders getInstance(WebDriver driver) {
+		if(dp==null)
+			dp = new DataProviders();
+		drivers = driver;
+		return dp;
+	}*/
+	
+	private synchronized Map<String, String> getExcelSheet() throws IOException {
 		inputStream = new FileInputStream(new File(filePath));
 		workbook = new HSSFWorkbook(inputStream);
 		sheet = workbook.getSheet(sheetName);
@@ -84,10 +97,21 @@ public class DataProviders {
 	    return map;
 	}
 	
-	public String getData(String key) throws IOException {
+	public synchronized String getData(String key) throws IOException {
 		if(isgetDataExecuted)
 			getExcelSheet();
 		return map.get(key);
+	}
+	
+	public static void element(String key, By by) {
+		elementDatas.put(key, by);
+	}
+	
+	public static WebElement element(String key) {
+		By by = elementDatas.get(key);
+		if(by==null) 
+			throw new NoSuchElementException("Element "+key+" is not prenent");
+		return drivers.findElement(by);
 	}
 }
 

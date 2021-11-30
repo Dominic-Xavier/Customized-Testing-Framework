@@ -9,89 +9,97 @@ import java.awt.event.KeyEvent;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.config.OperatingSystem;
+import com.excelSheet.DataProviders;
+import com.testNgClass.BrowserDriver;
 
-public class WebTestBase {
-	
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class WebTestBase extends DataProviders{
+
 	private static Select select;
 	private static WebDriverWait wait;
-	private static WebDriver driver, chrome, firefox, ieDriver, safari, edge;
-	private static WebTestBase testBase;
+	//public static DataProviders dp = new DataProviders(drivers);
+	//private static WebDriver chrome, firefox, ieDriver, safari, opera;
 	
-	private WebTestBase(WebDriver webDriver) {
-		//Pass getInstance method Here
-		driver = webDriver;
-	}
+	//private static WebTestBase testBase;
 	
-	public synchronized static WebTestBase getInstance(WebDriver driver) {
+	/*public synchronized static WebTestBase getInstance(WebDriver driver) {
 		if(testBase==null)
 			testBase = new WebTestBase(driver);
 		return testBase;
-	}
+	}*/
 	
-	public static synchronized WebDriver getWebDriver(BrowserName browserName, String url, OperatingSystem os) {
+	/*public static synchronized WebDriver getWebDriver(String browserName) {
 		
-		switch (browserName) {
-			case CHROME:
-				WebDriverManager.chromedriver().operatingSystem(os).setup();
+		switch (browserName.toUpperCase()) {
+			case "CHROME":
+				WebDriverManager.chromedriver().setup();
 				if(chrome==null)
 					chrome = new ChromeDriver();
-				chrome.get(url);
 				chrome.manage().window().maximize();
-				return chrome;
-			case FIREFOX:
-				WebDriverManager.firefoxdriver().operatingSystem(os).setup();
+			return chrome;
+			
+			case "FIREFOX":
+				WebDriverManager.firefoxdriver().setup();
 				if(firefox==null)
 					firefox = new FirefoxDriver();
-				firefox.get(url);
 				firefox.manage().window().maximize();
-				return firefox;
+			return firefox;
 				
-			case IE:
-				WebDriverManager.iedriver().operatingSystem(os).setup();
+			case "IE":
+				WebDriverManager.iedriver().setup();
 				if(ieDriver==null)
 					ieDriver = new InternetExplorerDriver();
-				ieDriver.get(url);
 				ieDriver.manage().window().maximize();
-				return ieDriver;
+			return ieDriver;
 				
-			case SAFARI:
-				WebDriverManager.safaridriver().operatingSystem(os).setup();
+			case "SAFARI":
+				WebDriverManager.safaridriver().setup();
 				if(safari==null)
 					safari = new SafariDriver();
-				safari.get(url);
 				safari.manage().window().maximize();
-				return safari;
+			return safari;
 			
-			case EDGE:
-				WebDriverManager.edgedriver().operatingSystem(os).setup();
+			case "EDGE":
+				WebDriverManager.edgedriver().setup();
 				if(edge==null)
 					edge = new EdgeDriver();
-				edge.get(url);
 				edge.manage().window().maximize();
-				return edge;
+			return edge;
 				
+			case "OPERA":
+				WebDriverManager.operadriver().setup();
+				if(opera==null)
+					opera = new OperaDriver();
+				opera.manage().window().maximize();
+			return opera;
+			
+			default:
+				System.err.println("Enter Correct Browser Name...!");
 		}
 		return null;
+	}*/
+	
+	public static void passURL(String URL) {
+		drivers.get(URL);
 	}
 	
-	
-	
-	public Set<String> getWindowHandles(){
-		return driver.getWindowHandles();
+	public static Set<String> getWindowHandles(){
+		return drivers.getWindowHandles();
 	}
 	
-	public void selectByValueOrVisibletext(SelectBy by, WebElement element, String text) {
+	public static void selectByValueOrVisibletext(SelectBy by, WebElement element, String text) {
 		switch (by) {
 		case SELECT_BY_VALUE:
 			select = new Select(element);
@@ -131,29 +139,21 @@ public class WebTestBase {
 		}
 	}
 	
-	public void implicitWait(long seconds) {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
+	public static void implicitWait(long seconds) {
+		drivers.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
 	}
 	
-	public void explicitWait(WebDriver driver, long seconds, WebElement element) {
+	public static void explicitWait(WebDriver driver, long seconds, WebElement element) {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 	
-	public void navigateFordWard() {
-		driver.navigate().forward();
+	public static void navigateFordWard() {
+		drivers.navigate().forward();
 	}
 	
-	public void navigateBackWard() {
-		driver.navigate().back();
-	}
-	
-	public void click(WebElement element) {
-		element.click();
-	}
-	
-	public void enterText(WebElement element, String text) {
-		element.sendKeys(text);
+	public static void navigateBackWard() {
+		drivers.navigate().back();
 	}
 	
 	public static void enterText(String text) throws AWTException {
@@ -529,14 +529,17 @@ public class WebTestBase {
 			break;
 			}
 		}
-		
 	}
 	
-	public void closeTab() {
-		driver.close();
+	public static void openNewTab(String URL) {
+		drivers.switchTo().newWindow(WindowType.TAB).get(URL);
 	}
 	
-	public void closeBrowser() {
-		driver.quit();
+	public static void closeTab() {
+		drivers.close();
+	}
+	
+	public static void closeBrowser() {
+		drivers.quit();
 	}
 }
