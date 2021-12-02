@@ -3,13 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.runner.TestRunner">
+      <class name="com.testNgClass.BrowserDriver">
         <methods>
-          <include name="setUpClass"/>
-          <include name="runScenario" invocation-numbers="0 1"/>
-          <include name="tearDownClass"/>
+          <include name="browserName"/>
         </methods>
-      </class> <!-- com.runner.TestRunner -->
+      </class> <!-- com.testNgClass.BrowserDriver -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

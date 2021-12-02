@@ -22,32 +22,33 @@ import io.cucumber.java.en.Given;
 
 public class Login extends WebTestBase{
 	
-	static Reports reports;
-	static UserCredentials userCredentials;
+	WebDriver driver;
 	
-	@Before
-	public void launchApplication() throws IOException, FolderNotCreated, InterruptedException {
-		//reports = Reports.getInstaice(this.getClass());
-		String URL = dp.getData("URL");
-		passURL(URL);
+	@Given("user opens app and passes URL {string}")
+	public void user_opens_app_and_passes_url(String URL) throws BrowserException, IOException {
+		//System.out.println("Browser name is "+getbrowserName());
+		driver = Initialize(getbrowserName(), URL);
+		//String data = dp.getData("URL");
+		//Initialize(getbrowserName());
 	}
-	
-	@Given("User launches the application")
-	public void user_launches_the_application() throws IOException, BrowserException {
-		browserName("Chrome");
-		String URL = dp.getData("URL");
-		passURL(URL);
-	}
-	
 	@Given("user logs into the application with username {string} and Password {string}")
-	public void user_logs_into_the_application_with_username_and_password(String username, String password) throws IOException, AWTException, InterruptedException {
-		//userCredentials = UserCredentials.getInstance();
-		userCredentials = UserCredentials.getInstance();
+	public void user_logs_into_the_application_with_username_and_password(String username, String password) throws InterruptedException {
+		UserCredentials userCredentials = UserCredentials.getInstance(driver);
+		//UserCredentials userCredentials = new UserCredentials();
 		userCredentials.login(username, password);
+		closeTab();
+	}
+	
+	@Given("User enters the {string} id to create an account")
+	public void user_enters_the_id_to_create_an_account(String email) throws InterruptedException {
+		UserCredentials userCredentials = UserCredentials.getInstance(driver);
+		//UserCredentials userCredentials = new UserCredentials();
+		userCredentials.register(email);
+		closeTab();
 	}
 	
 	@After
-	public void closeApp() {
-		closeTab();
+	public void close() {
+		closeBrowser();
 	}
 }

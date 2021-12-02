@@ -1,10 +1,6 @@
 package com.runner;
 
-import java.io.IOException;
-
 import org.testng.annotations.DataProvider;
-
-import com.excelSheet.DataProviders;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -13,12 +9,11 @@ import io.cucumber.testng.CucumberOptions;
 		features = {"./src/test/resources/testSteps"},
 		glue = {"testSteps"},
 		monochrome = true,
-		dryRun = true,
+		dryRun = false,
 		publish = true,
 		plugin = {"pretty","json:Reports/cucumber-reports/Cucumber.json", "html:Reports/cucumber-reports.html",
-				
 				"rerun:target/failedTestCases.txt"}
-)
+		)
 
 public class TestRunner extends AbstractTestNGCucumberTests{
 	

@@ -25,10 +25,13 @@ import com.testNgClass.BrowserDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class WebTestBase extends DataProviders{
+public class WebTestBase extends BrowserDriver{
 
 	private static Select select;
 	private static WebDriverWait wait;
+	
+	//public WebTestBase(WebDriver driver) { drivers = getWebDriver(); }
+	
 	//public static DataProviders dp = new DataProviders(drivers);
 	//private static WebDriver chrome, firefox, ieDriver, safari, opera;
 	
@@ -45,45 +48,39 @@ public class WebTestBase extends DataProviders{
 		switch (browserName.toUpperCase()) {
 			case "CHROME":
 				WebDriverManager.chromedriver().setup();
-				if(chrome==null)
-					chrome = new ChromeDriver();
-				chrome.manage().window().maximize();
-			return chrome;
+				driver = new ChromeDriver();
+				driver.manage().window().maximize();
+			return driver;
 			
 			case "FIREFOX":
 				WebDriverManager.firefoxdriver().setup();
-				if(firefox==null)
-					firefox = new FirefoxDriver();
-				firefox.manage().window().maximize();
-			return firefox;
+				driver = new FirefoxDriver();
+				driver.manage().window().maximize();
+			return driver;
 				
 			case "IE":
 				WebDriverManager.iedriver().setup();
-				if(ieDriver==null)
-					ieDriver = new InternetExplorerDriver();
-				ieDriver.manage().window().maximize();
-			return ieDriver;
+				driver = new InternetExplorerDriver();
+				driver.manage().window().maximize();
+			return driver;
 				
 			case "SAFARI":
 				WebDriverManager.safaridriver().setup();
-				if(safari==null)
-					safari = new SafariDriver();
-				safari.manage().window().maximize();
-			return safari;
+				driver = new SafariDriver();
+				driver.manage().window().maximize();
+			return driver;
 			
 			case "EDGE":
 				WebDriverManager.edgedriver().setup();
-				if(edge==null)
-					edge = new EdgeDriver();
-				edge.manage().window().maximize();
-			return edge;
+				driver = new EdgeDriver();
+				driver.manage().window().maximize();
+			return driver;
 				
 			case "OPERA":
 				WebDriverManager.operadriver().setup();
-				if(opera==null)
-					opera = new OperaDriver();
-				opera.manage().window().maximize();
-			return opera;
+				driver = new OperaDriver();
+				driver.manage().window().maximize();
+			return driver;
 			
 			default:
 				System.err.println("Enter Correct Browser Name...!");
@@ -92,11 +89,11 @@ public class WebTestBase extends DataProviders{
 	}*/
 	
 	public static void passURL(String URL) {
-		drivers.get(URL);
+		driver.get(URL);
 	}
 	
 	public static Set<String> getWindowHandles(){
-		return drivers.getWindowHandles();
+		return driver.getWindowHandles();
 	}
 	
 	public static void selectByValueOrVisibletext(SelectBy by, WebElement element, String text) {
@@ -140,7 +137,7 @@ public class WebTestBase extends DataProviders{
 	}
 	
 	public static void implicitWait(long seconds) {
-		drivers.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
 	}
 	
 	public static void explicitWait(WebDriver driver, long seconds, WebElement element) {
@@ -149,11 +146,11 @@ public class WebTestBase extends DataProviders{
 	}
 	
 	public static void navigateFordWard() {
-		drivers.navigate().forward();
+		driver.navigate().forward();
 	}
 	
 	public static void navigateBackWard() {
-		drivers.navigate().back();
+		driver.navigate().back();
 	}
 	
 	public static void enterText(String text) throws AWTException {
@@ -532,14 +529,14 @@ public class WebTestBase extends DataProviders{
 	}
 	
 	public static void openNewTab(String URL) {
-		drivers.switchTo().newWindow(WindowType.TAB).get(URL);
+		driver.switchTo().newWindow(WindowType.TAB).get(URL);
 	}
 	
 	public static void closeTab() {
-		drivers.close();
+		driver.close();
 	}
 	
 	public static void closeBrowser() {
-		drivers.quit();
+		driver.quit();
 	}
 }

@@ -1,5 +1,6 @@
 package com.testNgClass;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -10,72 +11,101 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.Baseclass.WebTestBase;
 import com.customException.BrowserException;
 import com.excelSheet.DataProviders;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BrowserDriver{
+public class BrowserDriver {
 	
-	public static WebDriver chrome, firefox, ieDriver, safari, opera, edge;
+	public static WebDriver driver;
 	public static DataProviders dp;
+	private static String browserName;
 	
-	
-	@Test(priority = 0)
+	@Test
 	@Parameters("Browsername")
-	public static void browserName(String browserName) throws BrowserException {
+	private void browserName(String browserNames) {
+		browserName = browserNames;
+	}
+	
+	public static String getbrowserName() {
+		return browserName;
+	}
+	
+	public static WebDriver Initialize(String browserName, String URL) throws BrowserException {
 		
 		switch (browserName.toUpperCase()) {
 		case "CHROME":
 			WebDriverManager.chromedriver().setup();
-			if(chrome==null)
-				chrome = new ChromeDriver();
+			WebDriver chrome = new ChromeDriver();
 			chrome.manage().window().maximize();
-			dp = new DataProviders(chrome);
-		break;
+			chrome.get(URL);
+			driver = chrome;
+			dp = new DataProviders();
+		return chrome;
 		
 		case "FIREFOX":
 			WebDriverManager.firefoxdriver().setup();
-			if(firefox==null)
-				firefox = new FirefoxDriver();
+			WebDriver firefox = new FirefoxDriver();
 			firefox.manage().window().maximize();
-			dp = new DataProviders(firefox);
-		break;
+			driver = firefox;
+			dp = new DataProviders();
+		return firefox;
 			
 		case "IE":
 			WebDriverManager.iedriver().setup();
-			if(ieDriver==null)
-				ieDriver = new InternetExplorerDriver();
+			WebDriver ieDriver = new InternetExplorerDriver();
 			ieDriver.manage().window().maximize();
-			dp = new DataProviders(ieDriver);
-		break;
+			driver = ieDriver;
+			dp = new DataProviders();
+		return ieDriver;
 			
 		case "SAFARI":
 			WebDriverManager.safaridriver().setup();
-			if(safari==null)
-				safari = new SafariDriver();
+			WebDriver safari = new SafariDriver();
 			safari.manage().window().maximize();
-			dp = new DataProviders(safari);
-		break;
+			driver = safari;
+			dp = new DataProviders();
+		return safari;
 		
 		case "EDGE":
 			WebDriverManager.edgedriver().setup();
-			if(edge==null)
-				edge = new EdgeDriver();
+			WebDriver edge = new EdgeDriver();
 			edge.manage().window().maximize();
-			dp = new DataProviders(edge);
-		break;
+			driver = edge;
+			dp = new DataProviders();
+		return edge;
 			
 		case "OPERA":
 			WebDriverManager.operadriver().setup();
-			if(opera==null)
-				opera = new OperaDriver();
+			WebDriver opera = new OperaDriver();
 			opera.manage().window().maximize();
-			dp = new DataProviders(opera);
-		break;
+			opera.get(URL);
+			driver = opera;
+			dp = new DataProviders();
+		return opera;
 		
 		default:
 			throw new BrowserException();
 		}
+	}
+	
+	@Test(priority = 0)
+	private void browser() {
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		driver.get("https://www.google.com");
+		System.out.println("THread ID is "+Thread.currentThread().getId());
+		driver.findElement(By.name("q")).sendKeys("Trisha");
+	}
+	
+	@Test(priority = 1)
+	private void browser2() throws InterruptedException {
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		driver.get("https://www.google.com");
+		System.out.println("THread ID is "+Thread.currentThread().getId());
+		driver.findElement(By.name("q")).sendKeys("Samantha");
 	}
 }

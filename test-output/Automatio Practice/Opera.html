@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Opera</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/2/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>2/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Dec 01 00:17:59 IST 2021</td>
+<td>Started on:</td><td>Fri Dec 03 01:27:45 IST 2021</td>
 </tr>
-<tr><td>Total time:</td><td>14 seconds (14365 ms)</td>
+<tr><td>Total time:</td><td>16 seconds (16322 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,77 +76,16 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='com.runner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Login Scenario", "Optional[Login]"</td>
-<td><div><pre>org.openqa.selenium.StaleElementReferenceException: stale element reference: element is not attached to the page document
-  (Session info: chrome=95.0.4638.69)
-  (Driver info: operadriver=95.0.4638.54 (d31a821ec901f68d0d34ccdbaea45b4c86ce543e-refs/branch-heads/4638@{#871}),platform=Linux 5.13.0-21-generic x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: https://selenium.dev/exceptions/#stale_element_reference
-Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
-System info: host: &apos;dominic-To-be-filled-by-O-E-M&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.13.0-21-generic&apos;, java.version: &apos;1.8.0_202&apos;
-Driver info: org.openqa.selenium.opera.OperaDriver
-Command: [0a92bb78d03eb55f658ab3df416b7f98, clickElement {id=0.953947394321851-1}]
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: opera, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:45651}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, opera: {operadriverVersion: 95.0.4638.54 (d31a821ec901f..., userDataDir: /tmp/.org.chromium.Chromium...}, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 95.0.4638.69, webStorageEnabled: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Element: [[OperaDriver: opera on LINUX (0a92bb78d03eb55f658ab3df416b7f98)] -&gt; link text: Sign in]
-Session ID: 0a92bb78d03eb55f658ab3df416b7f98
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:217)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:169)
-	at org.openqa.selenium.remote.codec.jwp.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:41)
-	at org.openqa.selenium.remote.codec.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:83)
-	at org.openqa.selenium.remote.codec.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:47)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:251)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
-	at com.flipkart.pageObject.UserCredentials.login(UserCredentials.java:46)
-	at testSteps.Login.user_logs_into_the_application_with_username_and_password(Login.java:38)
-	at ✽.user logs into the application with username &quot;vebas14497@servergem.com&quot; and Password &quot;vebas14497@123&quot;(file:///home/dominic/eclipse-workspace/Flipkart/./src/test/resources/testSteps/login.feature:6)
-... Removed 4 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace697649196", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace697649196'><pre>org.openqa.selenium.StaleElementReferenceException: stale element reference: element is not attached to the page document
-  (Session info: chrome=95.0.4638.69)
-  (Driver info: operadriver=95.0.4638.54 (d31a821ec901f68d0d34ccdbaea45b4c86ce543e-refs/branch-heads/4638@{#871}),platform=Linux 5.13.0-21-generic x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: https://selenium.dev/exceptions/#stale_element_reference
-Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
-System info: host: &apos;dominic-To-be-filled-by-O-E-M&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.13.0-21-generic&apos;, java.version: &apos;1.8.0_202&apos;
-Driver info: org.openqa.selenium.opera.OperaDriver
-Command: [0a92bb78d03eb55f658ab3df416b7f98, clickElement {id=0.953947394321851-1}]
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: opera, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:45651}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, opera: {operadriverVersion: 95.0.4638.54 (d31a821ec901f..., userDataDir: /tmp/.org.chromium.Chromium...}, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 95.0.4638.69, webStorageEnabled: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Element: [[OperaDriver: opera on LINUX (0a92bb78d03eb55f658ab3df416b7f98)] -&gt; link text: Sign in]
-Session ID: 0a92bb78d03eb55f658ab3df416b7f98
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:217)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:169)
-	at org.openqa.selenium.remote.codec.jwp.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:41)
-	at org.openqa.selenium.remote.codec.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:83)
-	at org.openqa.selenium.remote.codec.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:47)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:251)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
-	at com.flipkart.pageObject.UserCredentials.login(UserCredentials.java:46)
-	at testSteps.Login.user_logs_into_the_application_with_username_and_password(Login.java:38)
-	at ✽.user logs into the application with username &quot;vebas14497@servergem.com&quot; and Password &quot;vebas14497@123&quot;(file:///home/dominic/eclipse-workspace/Flipkart/./src/test/resources/testSteps/login.feature:6)
-</pre></div></td>
-<td>9</td>
-<td>com.runner.TestRunner@6b67034</td></tr>
-<tr>
-<td title='com.runner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Register", "Optional[Login]"</td>
 <td><div><pre>org.openqa.selenium.NoSuchSessionException: invalid session id
-  (Driver info: operadriver=95.0.4638.54 (d31a821ec901f68d0d34ccdbaea45b4c86ce543e-refs/branch-heads/4638@{#871}),platform=Linux 5.13.0-21-generic x86_64) (WARNING: The server did not provide any stacktrace information)
+  (Driver info: operadriver=95.0.4638.54 (d31a821ec901f68d0d34ccdbaea45b4c86ce543e-refs/branch-heads/4638@{#871}),platform=Linux 5.13.0-22-generic x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 0 milliseconds
 Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
-System info: host: &apos;dominic-To-be-filled-by-O-E-M&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.13.0-21-generic&apos;, java.version: &apos;1.8.0_202&apos;
+System info: host: &apos;dominic-To-be-filled-by-O-E-M&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.13.0-22-generic&apos;, java.version: &apos;1.8.0_202&apos;
 Driver info: org.openqa.selenium.opera.OperaDriver
-Command: [0a92bb78d03eb55f658ab3df416b7f98, get {url=http://automationpractice.com}]
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: opera, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:45651}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, opera: {operadriverVersion: 95.0.4638.54 (d31a821ec901f..., userDataDir: /tmp/.org.chromium.Chromium...}, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 95.0.4638.69, webStorageEnabled: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 0a92bb78d03eb55f658ab3df416b7f98
+Command: [00e844068fe2f75100edb9c010cd0e3f, clickElement {id=0.6575736243841155-6}]
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: opera, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:45737}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, opera: {operadriverVersion: 95.0.4638.54 (d31a821ec901f..., userDataDir: /tmp/.org.chromium.Chromium...}, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 95.0.4638.69, webStorageEnabled: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[OperaDriver: opera on LINUX (00e844068fe2f75100edb9c010cd0e3f)] -&gt; id: SubmitLogin]
+Session ID: 00e844068fe2f75100edb9c010cd0e3f
 	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:217)
 	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:169)
 	at org.openqa.selenium.remote.codec.jwp.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:41)
@@ -156,19 +95,22 @@ Session ID: 0a92bb78d03eb55f658ab3df416b7f98
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:328)
-	at com.Baseclass.WebTestBase.passURL(WebTestBase.java:95)
-	at testSteps.Login.launchApplication(Login.java:31)
-... Removed 4 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1220487796", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1220487796'><pre>org.openqa.selenium.NoSuchSessionException: invalid session id
-  (Driver info: operadriver=95.0.4638.54 (d31a821ec901f68d0d34ccdbaea45b4c86ce543e-refs/branch-heads/4638@{#871}),platform=Linux 5.13.0-21-generic x86_64) (WARNING: The server did not provide any stacktrace information)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:251)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at com.flipkart.pageObject.UserCredentials.login(UserCredentials.java:34)
+	at testSteps.Login.user_logs_into_the_application_with_username_and_password(Login.java:35)
+	at ✽.user logs into the application with username &quot;vebas14497@servergem.com&quot; and Password &quot;vebas14497@123&quot;(file:///home/dominic/eclipse-workspace/Flipkart/./src/test/resources/testSteps/login.feature:10)
+... Removed 4 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace176805736", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace176805736'><pre>org.openqa.selenium.NoSuchSessionException: invalid session id
+  (Driver info: operadriver=95.0.4638.54 (d31a821ec901f68d0d34ccdbaea45b4c86ce543e-refs/branch-heads/4638@{#871}),platform=Linux 5.13.0-22-generic x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 0 milliseconds
 Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
-System info: host: &apos;dominic-To-be-filled-by-O-E-M&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.13.0-21-generic&apos;, java.version: &apos;1.8.0_202&apos;
+System info: host: &apos;dominic-To-be-filled-by-O-E-M&apos;, ip: &apos;127.0.1.1&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.13.0-22-generic&apos;, java.version: &apos;1.8.0_202&apos;
 Driver info: org.openqa.selenium.opera.OperaDriver
-Command: [0a92bb78d03eb55f658ab3df416b7f98, get {url=http://automationpractice.com}]
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: opera, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:45651}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, opera: {operadriverVersion: 95.0.4638.54 (d31a821ec901f..., userDataDir: /tmp/.org.chromium.Chromium...}, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 95.0.4638.69, webStorageEnabled: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 0a92bb78d03eb55f658ab3df416b7f98
+Command: [00e844068fe2f75100edb9c010cd0e3f, clickElement {id=0.6575736243841155-6}]
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: opera, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:45737}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, opera: {operadriverVersion: 95.0.4638.54 (d31a821ec901f..., userDataDir: /tmp/.org.chromium.Chromium...}, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 95.0.4638.69, webStorageEnabled: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[OperaDriver: opera on LINUX (00e844068fe2f75100edb9c010cd0e3f)] -&gt; id: SubmitLogin]
+Session ID: 00e844068fe2f75100edb9c010cd0e3f
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -182,11 +124,13 @@ Session ID: 0a92bb78d03eb55f658ab3df416b7f98
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:328)
-	at com.Baseclass.WebTestBase.passURL(WebTestBase.java:95)
-	at testSteps.Login.launchApplication(Login.java:31)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:251)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at com.flipkart.pageObject.UserCredentials.login(UserCredentials.java:34)
+	at testSteps.Login.user_logs_into_the_application_with_username_and_password(Login.java:35)
+	at ✽.user logs into the application with username &quot;vebas14497@servergem.com&quot; and Password &quot;vebas14497@123&quot;(file:///home/dominic/eclipse-workspace/Flipkart/./src/test/resources/testSteps/login.feature:10)
 </pre></div></td>
-<td>0</td>
+<td>14</td>
 <td>com.runner.TestRunner@6b67034</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
@@ -199,8 +143,13 @@ Session ID: 0a92bb78d03eb55f658ab3df416b7f98
 <tr>
 <td title='com.testNgClass.BrowserDriver.browserName()'><b>browserName</b><br>Test class: com.testNgClass.BrowserDriver<br>Parameters: Opera</td>
 <td></td>
-<td>3</td>
+<td>0</td>
 <td>com.testNgClass.BrowserDriver@10b48321</td></tr>
+<tr>
+<td title='com.runner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Register", "Optional[Login]"</td>
+<td></td>
+<td>14</td>
+<td>com.runner.TestRunner@6b67034</td></tr>
 </table><p>
 </body>
 </html>
