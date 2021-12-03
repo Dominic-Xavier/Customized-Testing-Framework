@@ -16,6 +16,7 @@ import com.customException.BrowserException;
 import com.excelSheet.DataProviders;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.OperatingSystem;
 
 public class BrowserDriver {
 	
@@ -42,7 +43,6 @@ public class BrowserDriver {
 			chrome.manage().window().maximize();
 			chrome.get(URL);
 			driver = chrome;
-			dp = new DataProviders();
 		return chrome;
 		
 		case "FIREFOX":
@@ -50,7 +50,6 @@ public class BrowserDriver {
 			WebDriver firefox = new FirefoxDriver();
 			firefox.manage().window().maximize();
 			driver = firefox;
-			dp = new DataProviders();
 		return firefox;
 			
 		case "IE":
@@ -58,7 +57,6 @@ public class BrowserDriver {
 			WebDriver ieDriver = new InternetExplorerDriver();
 			ieDriver.manage().window().maximize();
 			driver = ieDriver;
-			dp = new DataProviders();
 		return ieDriver;
 			
 		case "SAFARI":
@@ -66,7 +64,6 @@ public class BrowserDriver {
 			WebDriver safari = new SafariDriver();
 			safari.manage().window().maximize();
 			driver = safari;
-			dp = new DataProviders();
 		return safari;
 		
 		case "EDGE":
@@ -74,7 +71,6 @@ public class BrowserDriver {
 			WebDriver edge = new EdgeDriver();
 			edge.manage().window().maximize();
 			driver = edge;
-			dp = new DataProviders();
 		return edge;
 			
 		case "OPERA":
@@ -83,7 +79,6 @@ public class BrowserDriver {
 			opera.manage().window().maximize();
 			opera.get(URL);
 			driver = opera;
-			dp = new DataProviders();
 		return opera;
 		
 		default:
@@ -91,7 +86,7 @@ public class BrowserDriver {
 		}
 	}
 	
-	@Test(priority = 0)
+	/*@Test(priority = 0)
 	private void browser() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
@@ -107,5 +102,5 @@ public class BrowserDriver {
 		driver.get("https://www.google.com");
 		System.out.println("THread ID is "+Thread.currentThread().getId());
 		driver.findElement(By.name("q")).sendKeys("Samantha");
-	}
+	}*/
 }

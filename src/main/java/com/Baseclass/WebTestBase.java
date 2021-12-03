@@ -29,8 +29,13 @@ public class WebTestBase extends BrowserDriver{
 
 	private static Select select;
 	private static WebDriverWait wait;
+	private WebDriver driver;
 	
-	//public WebTestBase(WebDriver driver) { drivers = getWebDriver(); }
+	public WebTestBase() {}
+	
+	public WebTestBase(WebDriver driver) {
+		this.driver = driver;
+	}
 	
 	//public static DataProviders dp = new DataProviders(drivers);
 	//private static WebDriver chrome, firefox, ieDriver, safari, opera;
@@ -88,15 +93,15 @@ public class WebTestBase extends BrowserDriver{
 		return null;
 	}*/
 	
-	public static void passURL(String URL) {
+	public void passURL(String URL) {
 		driver.get(URL);
 	}
 	
-	public static Set<String> getWindowHandles(){
+	public Set<String> getWindowHandles(){
 		return driver.getWindowHandles();
 	}
 	
-	public static void selectByValueOrVisibletext(SelectBy by, WebElement element, String text) {
+	public void selectByValueOrVisibletext(SelectBy by, WebElement element, String text) {
 		switch (by) {
 		case SELECT_BY_VALUE:
 			select = new Select(element);
@@ -136,20 +141,20 @@ public class WebTestBase extends BrowserDriver{
 		}
 	}
 	
-	public static void implicitWait(long seconds) {
+	public void implicitWait(long seconds) {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
 	}
 	
-	public static void explicitWait(WebDriver driver, long seconds, WebElement element) {
+	public void explicitWait(WebDriver driver, long seconds, WebElement element) {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 	
-	public static void navigateFordWard() {
+	public void navigateFordWard() {
 		driver.navigate().forward();
 	}
 	
-	public static void navigateBackWard() {
+	public void navigateBackWard() {
 		driver.navigate().back();
 	}
 	
@@ -528,15 +533,15 @@ public class WebTestBase extends BrowserDriver{
 		}
 	}
 	
-	public static void openNewTab(String URL) {
+	public void openNewTab(String URL) {
 		driver.switchTo().newWindow(WindowType.TAB).get(URL);
 	}
 	
-	public static void closeTab() {
+	public void closeTab() {
 		driver.close();
 	}
 	
-	public static void closeBrowser() {
+	public void closeBrowser() {
 		driver.quit();
 	}
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Automatio Practice" parallel = "none">
+<suite name="Automatio Practice" parallel = "methods">
   <test name="Chrome">
   <parameter name = "Browsername" value = "Chrome"/>
   	<classes>
   		<class name="com.testNgClass.BrowserDriver"/>
-  		<!-- <class name="com.runner.TestRunner"/> -->
+  		<class name="com.runner.TestRunner"/>
     </classes>
   </test> 
   

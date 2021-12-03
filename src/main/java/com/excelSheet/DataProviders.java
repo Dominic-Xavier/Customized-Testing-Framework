@@ -22,7 +22,7 @@ import com.testNgClass.BrowserDriver;
 
 import net.bytebuddy.asm.Advice.This;
 
-public class DataProviders extends WebTestBase{
+public class DataProviders {
 	
 	private static final String filePath = "./EnvConfig.xls";
 	private static final String sheetName = "Configuration";
@@ -34,8 +34,11 @@ public class DataProviders extends WebTestBase{
 	private static boolean isgetDataExecuted = true;
 	private static final Map<String, By> elementDatas = new HashMap<String, By>();
 	//private static DataProviders dp;
+	private WebDriver driver;
 	
-	public DataProviders() {}
+	public DataProviders(WebDriver driver) {
+		this.driver = driver;
+	}
 	
 	/*public synchronized static DataProviders getInstance(WebDriver driver) {
 		if(dp==null)
@@ -102,7 +105,7 @@ public class DataProviders extends WebTestBase{
 		elementDatas.put(key, by);
 	}
 	
-	public static WebElement element(String key) {
+	public WebElement element(String key) {
 		By by = elementDatas.get(key);
 		if(by==null) 
 			throw new NoSuchElementException("Element "+key+" is not prenent");
