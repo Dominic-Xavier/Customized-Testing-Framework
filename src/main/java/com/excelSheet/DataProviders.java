@@ -32,13 +32,8 @@ public class DataProviders {
 	private static String[][] values; 
 	private static final Map<String, String> map = new HashMap<>();
 	private static boolean isgetDataExecuted = true;
-	private static final Map<String, By> elementDatas = new HashMap<String, By>();
-	//private static DataProviders dp;
-	private WebDriver driver;
 	
-	public DataProviders(WebDriver driver) {
-		this.driver = driver;
-	}
+	//private static DataProviders dp;
 	
 	/*public synchronized static DataProviders getInstance(WebDriver driver) {
 		if(dp==null)
@@ -89,7 +84,7 @@ public class DataProviders {
 		
 	    for (String[] m : list) {
 	      if (map.put(m[0], m[1]) != null) {
-	        throw new IllegalStateException("Duplicate key");
+	        //throw new IllegalStateException("Duplicate key");
 	      }
 	    }
 	    return map;
@@ -101,16 +96,7 @@ public class DataProviders {
 		return map.get(key);
 	}
 	
-	public static void element(String key, By by) {
-		elementDatas.put(key, by);
-	}
 	
-	public WebElement element(String key) {
-		By by = elementDatas.get(key);
-		if(by==null) 
-			throw new NoSuchElementException("Element "+key+" is not prenent");
-		return driver.findElement(by);
-	}
 }
 
 

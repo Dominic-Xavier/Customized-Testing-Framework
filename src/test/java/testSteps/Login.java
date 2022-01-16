@@ -34,6 +34,7 @@ public class Login extends WebTestBase{
 		//String data = dp.getData("URL");
 		//Initialize(getbrowserName());
 	}
+	
 	@Given("user logs into the application with username {string} and Password {string}")
 	public void user_logs_into_the_application_with_username_and_password(String username, String password) throws InterruptedException {
 		//UserCredentials userCredentials = UserCredentials.getInstance(driver);

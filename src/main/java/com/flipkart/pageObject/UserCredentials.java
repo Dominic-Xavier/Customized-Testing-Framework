@@ -12,15 +12,13 @@ import org.openqa.selenium.WebElement;
 import com.Baseclass.WebTestBase;
 import com.excelSheet.DataProviders;
 
-public class UserCredentials extends DataProviders{
+import mainPageObject.PageObject;
+
+public class UserCredentials extends PageObject{
 	
 	//private static UserCredentials credentials;
 		private WebDriver driver;
-		//private static final Map<String, By> elementDatas = new HashMap<String, By>();
-		//private UserCredentials() {}
-		private DataProviders dp;
-	
-	public UserCredentials(WebDriver driver) {
+		public UserCredentials(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		element("login_btn_SignIn", By.linkText("Sign in"));
@@ -65,7 +63,6 @@ public class UserCredentials extends DataProviders{
 	}*/
 	
 	public void login(String email, String password) throws InterruptedException {
-		dp = new DataProviders(driver);
 		element("login_btn_SignIn").click();
 		Thread.sleep(2000);
 		element("login_txt_Username").sendKeys(email);
@@ -75,7 +72,6 @@ public class UserCredentials extends DataProviders{
 	}
 	
 	public void register(String email) throws InterruptedException {
-		dp = new DataProviders(driver);
 		element("login_btn_SignIn").click();
 		Thread.sleep(2000);
 		element("login_txt_registerEmail").sendKeys(email);
