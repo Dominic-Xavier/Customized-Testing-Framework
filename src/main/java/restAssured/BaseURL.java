@@ -24,7 +24,7 @@ public class BaseURL extends WebTestBase{
 		.queryParams("grant_type", grant_type)
 		.when().post(url).asString();
 		
-		JsonPath js = new JsonPath(authCode);
+		JsonPath js = Json.rawToJson(authCode);
 		return js.getString(keyForAccessToken);
 	}
 }

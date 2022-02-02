@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.database.DatabaseHelper">
+      <class name="apiTest.SampleTestCase">
         <methods>
-          <include name="connectToDatabase"/>
+          <include name="getRemoteDriver"/>
+          <include name="url"/>
+          <include name="authCode"/>
         </methods>
-      </class> <!-- com.database.DatabaseHelper -->
+      </class> <!-- apiTest.SampleTestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

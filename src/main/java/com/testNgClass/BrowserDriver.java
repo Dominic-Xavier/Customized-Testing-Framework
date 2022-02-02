@@ -1,6 +1,7 @@
 package com.testNgClass;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.Platform;
@@ -18,6 +19,10 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.Baseclass.AUTOMATOR;
+import com.Baseclass.DesktopTestBase;
+import com.Baseclass.MobileTestBase;
+import com.Baseclass.OS;
 import com.customException.BrowserException;
 import com.excelSheet.DataProviders;
 
@@ -29,7 +34,7 @@ public class BrowserDriver extends DataProviders{
 	private static String browserName;
 	public static DataProviders dp = new DataProviders();
 	
-	//@BeforeClass
+	@BeforeClass
 	public WebDriver getRemoteDriver() throws IOException {
 		System.err.println("Selenium Grid required? "+dp.getData("Selenium Grid"));
 		if(dp.getData("Selenium Grid").toLowerCase().equals("yes")) {
@@ -71,12 +76,12 @@ public class BrowserDriver extends DataProviders{
 		browserName = browserNames;
 	}
 	
-	public static String getbrowserName() {
+	public static String getAppName() {
 		return browserName;
 	}
 	
 	
-	public static WebDriver Initialize(String browserName, String URL) throws BrowserException {
+	public static WebDriver Initialize(String browserName, String URL) throws BrowserException, IOException {
 		System.err.println("Browser name is "+browserName);
 		switch (browserName.toUpperCase()) {
 		case "CHROME":
@@ -126,6 +131,38 @@ public class BrowserDriver extends DataProviders{
 			opera.get(URL);
 			driver = opera;
 		return opera;
+		
+		case "ANDROID":
+			String deivceName = dp.getData("Device Name");
+			String UdId = dp.getData("UDID");
+			String PlatformName = dp.getData("Platform Name");
+			String PlatformVersion = dp.getData("Platform Version");
+			String AppPackage = dp.getData("App Package");
+			String AppActivity = dp.getData("App Activity");
+			String Ip = dp.getData("Ip Address");
+			String Port = dp.getData("Port");
+			String Path = dp.getData("Path");
+			driver = new MobileTestBase().launchAndroidApp(deivceName, UdId, PlatformName, PlatformVersion, AppPackage, 
+					AppActivity, AUTOMATOR.UIautomator2, Ip, Port, Path);
+		return driver;
+		
+		case "IOS":
+			String deivceName1 = dp.getData("Device Name");
+			String UdId1 = dp.getData("UDID");
+			String PlatformName1 = dp.getData("Platform Name");
+			String PlatformVersion1 = dp.getData("Platform Version");
+			String AppPackage1 = dp.getData("App Package");
+			String AppActivity1 = dp.getData("App Activity");
+			String Ip1 = dp.getData("Ip Address");
+			String Port1 = dp.getData("Port");
+			String Path1 = dp.getData("Path");
+			driver = new MobileTestBase().launchAndroidApp(deivceName1, UdId1, PlatformName1, PlatformVersion1, AppPackage1, 
+					AppActivity1, AUTOMATOR.UIautomator2, Ip1, Port1, Path1);
+		return driver;
+		
+		case "DESKTOP":
+			driver = new DesktopTestBase().getWiniumDriver();
+		return driver;
 		
 		default:
 			throw new BrowserException();

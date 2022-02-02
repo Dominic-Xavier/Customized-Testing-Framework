@@ -150,6 +150,10 @@ public class WebTestBase extends BrowserDriver{
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 	
+	public void pageLoadTimeOut(long seconds) {
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(seconds));
+	}
+	
 	public void navigateFordWard() {
 		driver.navigate().forward();
 	}
@@ -528,6 +532,13 @@ public class WebTestBase extends BrowserDriver{
 			case ' ':
 				robot.keyPress(KeyEvent.VK_SPACE);
 				robot.keyRelease(KeyEvent.VK_SPACE);
+			break;
+			
+			case '@':
+				robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_2);
+				robot.keyRelease(KeyEvent.VK_2);
+				robot.keyRelease(KeyEvent.VK_SHIFT);
 			break;
 			}
 		}

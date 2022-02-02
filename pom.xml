@@ -27,8 +27,8 @@
 		          <suiteXmlFiles>
 		          	<suiteXmlFile>testng.xml</suiteXmlFile>
 		          </suiteXmlFiles>
-		          <parallel>tests</parallel>
-		          <useUnlimitedThreads>true</useUnlimitedThreads>
+		          <!-- <parallel>tests</parallel>
+		          <useUnlimitedThreads>true</useUnlimitedThreads> -->
 	        </configuration>
       </plugin>
       
@@ -141,6 +141,14 @@
 	    <artifactId>rest-assured</artifactId>
 	    <version>4.4.0</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.github.stephenc.monte/monte-screen-recorder -->
+	<dependency>
+	    <groupId>com.github.stephenc.monte</groupId>
+	    <artifactId>monte-screen-recorder</artifactId>
+	    <version>0.7.7.0</version>
+	</dependency>
+	
 	
   </dependencies>
 </project>

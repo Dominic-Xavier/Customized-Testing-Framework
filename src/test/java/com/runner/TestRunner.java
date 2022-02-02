@@ -5,9 +5,8 @@ import io.cucumber.testng.CucumberOptions;
 //import cucumber.api.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 
-
 @CucumberOptions(
-		features = {"./src/test/resources/testSteps"},
+		features = {"./src/test/resources/testSteps/login.feature"},
 		glue = {"testSteps"},
 		monochrome = true,
 		dryRun = false,
@@ -18,7 +17,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 public class TestRunner extends AbstractTestNGCucumberTests {
 	
 	@Override
-    @DataProvider(parallel = true)
+    @DataProvider(parallel = false)
     public Object[][] scenarios() {
 		return super.scenarios();
     }

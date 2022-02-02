@@ -4,7 +4,6 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -18,7 +17,7 @@ import restAssured.SamplePayload;
 
 public class SampleTestCase extends BaseURL {
 	
-	//@Test
+	@Test
 	public void show() {
 		given().
 			get("/users?page=2")
@@ -27,7 +26,7 @@ public class SampleTestCase extends BaseURL {
 		.log().body();
 	}
 	
-	@Test
+	//@Test
 	public void getResponse() {
 		int sum = 0;
 		JsonPath js = new JsonPath(SamplePayload.Section);
@@ -78,7 +77,7 @@ public class SampleTestCase extends BaseURL {
 		Assert.assertEquals(sum, purchaseAmount);
 	}
 	
-	@Test
+	//@Test
 	public void authCode() throws BrowserException, IOException {
 		String Auth_Url = getData("Auth Url");
 		String Client_id = getData("Client id");

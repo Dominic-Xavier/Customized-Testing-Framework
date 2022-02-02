@@ -2,7 +2,7 @@ Feature: Login
 Description: This is a sample testcase for testing my framework.	
 
 Background: Opening Application
-	Given user opens app and passes URL "http://automationpractice.com"
+	Given user opens app and passes URL
 
 #Just a Sample Testcase
 Scenario Outline: Login Scenario
