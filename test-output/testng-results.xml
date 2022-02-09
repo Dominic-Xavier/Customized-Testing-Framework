@@ -2,26 +2,26 @@
 <testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-02-03T00:58:02 IST" name="Automatio Practice" finished-at="2022-02-03T00:58:06 IST" duration-ms="4041">
+  <suite started-at="2022-02-09T11:37:20 IST" name="Automatio Practice" finished-at="2022-02-09T11:37:31 IST" duration-ms="11415">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.DeskTop@74d1dc36]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2022-02-03T00:58:02 IST" name="Calculator" finished-at="2022-02-03T00:58:06 IST" duration-ms="4041">
+    <test started-at="2022-02-09T11:37:20 IST" name="Calculator" finished-at="2022-02-09T11:37:31 IST" duration-ms="11415">
       <class name="com.runner.DeskTop">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.DeskTop@74d1dc36]" started-at="2022-02-03T00:58:03 IST" name="setUpClass" finished-at="2022-02-03T00:58:03 IST" duration-ms="571" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.DeskTop@74d1dc36]" started-at="2022-02-09T11:37:20 IST" name="setUpClass" finished-at="2022-02-09T11:37:20 IST" duration-ms="463" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@412ebe64]]>
+                <![CDATA[org.testng.TestRunner@19827608]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.DeskTop@74d1dc36]" started-at="2022-02-03T00:58:03 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-02-03T00:58:05 IST" duration-ms="1301" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.DeskTop@74d1dc36]" started-at="2022-02-09T11:37:20 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-02-09T11:37:29 IST" duration-ms="9002" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -37,28 +37,24 @@
           <exception class="java.lang.NullPointerException">
             <full-stacktrace>
               <![CDATA[java.lang.NullPointerException
-at org.monte.screenrecorder.ScreenRecorder.createMovieWriter(ScreenRecorder.java:382)
-at org.monte.screenrecorder.ScreenRecorder.start(ScreenRecorder.java:489)
-at com.Reports.ScreenRecorderUtil.startRecord(ScreenRecorderUtil.java:65)
-at testSteps.Calc.user_opens_the_app(Calc.java:27)
-at ✽.user opens the app(file:///C:/Users/931128/Downloads/Project/Customized-Testing-Framework/./src/test/resources/testSteps/desktop.feature:5)
+at testSteps.Login.close(Login.java:58)
 ]]>
             </full-stacktrace>
           </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.DeskTop@74d1dc36]" started-at="2022-02-03T00:58:05 IST" name="tearDownClass" finished-at="2022-02-03T00:58:06 IST" duration-ms="1768" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.DeskTop@74d1dc36]" started-at="2022-02-09T11:37:29 IST" name="tearDownClass" finished-at="2022-02-09T11:37:31 IST" duration-ms="1564" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
       </class> <!-- com.runner.DeskTop -->
       <class name="com.testNgClass.BrowserDriver">
-        <test-method is-config="true" signature="getRemoteDriver()[pri:0, instance:com.testNgClass.BrowserDriver@3e27ba32]" started-at="2022-02-03T00:58:02 IST" name="getRemoteDriver" finished-at="2022-02-03T00:58:03 IST" duration-ms="353" status="PASS">
+        <test-method is-config="true" signature="getRemoteDriver()[pri:0, instance:com.testNgClass.BrowserDriver@3e27ba32]" started-at="2022-02-09T11:37:20 IST" name="getRemoteDriver" finished-at="2022-02-09T11:37:20 IST" duration-ms="342" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getRemoteDriver -->
-        <test-method signature="browserName(java.lang.String)[pri:0, instance:com.testNgClass.BrowserDriver@3e27ba32]" started-at="2022-02-03T00:58:03 IST" name="browserName" finished-at="2022-02-03T00:58:03 IST" duration-ms="5" status="PASS">
+        <test-method signature="browserName(java.lang.String)[pri:0, instance:com.testNgClass.BrowserDriver@3e27ba32]" started-at="2022-02-09T11:37:20 IST" name="browserName" finished-at="2022-02-09T11:37:20 IST" duration-ms="4" status="PASS">
           <params>
             <param index="0">
               <value>

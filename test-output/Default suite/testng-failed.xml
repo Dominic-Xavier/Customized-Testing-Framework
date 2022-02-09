@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="apiTest.SampleTestCase">
+      <class name="com.runner.DeskTop">
         <methods>
-          <include name="getRemoteDriver"/>
-          <include name="url"/>
-          <include name="authCode"/>
+          <include name="setUpClass"/>
+          <include name="runScenario" invocation-numbers="0"/>
+          <include name="tearDownClass"/>
         </methods>
-      </class> <!-- apiTest.SampleTestCase -->
+      </class> <!-- com.runner.DeskTop -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

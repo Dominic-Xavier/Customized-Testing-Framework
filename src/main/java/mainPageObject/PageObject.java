@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PageObject {
+public abstract class PageObject {
 	private WebDriver driver;
 	private static final Map<String, By> elementDatas = new HashMap<String, By>();
 	public PageObject(WebDriver driver) {
