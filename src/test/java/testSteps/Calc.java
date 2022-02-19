@@ -40,8 +40,8 @@ public class Calc extends WebTestBase{
 		ScreenRecorderUtil.stopRecord();
 	}
 	
-	@After
+	/*@After
 	public void close() {
 		base.closeBrowser();
-	}
+	}*/
 }

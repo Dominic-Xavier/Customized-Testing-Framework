@@ -2,6 +2,8 @@ package com.Reports;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -11,49 +13,64 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import com.Baseclass.WebTestBase;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.customException.FolderNotCreated;
+import com.excelSheet.DataProviders;
 
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
-public class Reports {
+public class Reports extends DataProviders{
 	
 	private static ExtentReports reports;
 	private static ExtentSparkReporter extentx;
-	private static ExtentTest createTest;
-	private static String classNames;
 	private static File report;
-	private static Reports reports1;
 	private static WebDriver driver;
+	private static String reportName;
 	
-	private Reports(Class<?> className) throws FolderNotCreated {
-		classNames = className.getName();
-		String ClassName = classNames.split("\\.")[1];
-		System.out.println("ClassName is "+ClassName);
-		report = new File("./Reports/"+ClassName+getRandomNumber()+"/Screenshot/");
+	public ExtentReports createReport(String className) throws FolderNotCreated, IOException {
+		String Document_Title = getData("Document Title");
+		String Report_Name = getData("Report Name");
+		String Company_Name = getData("Company Name");
+		String Project_Name = getData("Project Name");
+		String OS = getData("OS");
+		String date_time_Pattern = getData("Date&Time Pattern");
+		String name = className+getRandomNumber();
+		reportName = name;
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(date_time_Pattern);
+		LocalDateTime now = LocalDateTime.now();
+		String dateTime = dtf.format(now);
+		report = new File("./Reports/"+name+"/Screenshot/");
 		if(!report.isDirectory())
 			if(report.mkdirs())
-				System.out.println("Folder Created...!");
+				System.out.println("Reports Folder Created...!");
 			else
 				throw new FolderNotCreated("Reports folder not created...!");
 		reports = new ExtentReports();
-		extentx = new ExtentSparkReporter("./Reports/"+classNames);
+		extentx = new ExtentSparkReporter("./Reports/"+name+"/Report.html");
+		extentx.config().setDocumentTitle(Document_Title);
+		extentx.config().setReportName(Report_Name);
+		reports.attachReporter(extentx);
+		
+		reports.setSystemInfo("Company Name", Company_Name);
+		reports.setSystemInfo("Project Name", Project_Name);
+		reports.setSystemInfo("OS", OS);
+		reports.setSystemInfo("Date and Time", dateTime);
+		return reports;
 	}
 	
-	public synchronized static Reports getInstaice(Class<?> className, WebDriver drivers) throws FolderNotCreated {
-		if(reports1==null) 
-			reports1 = new Reports(className);
-		driver = drivers;
-		return reports1;
+	public ExtentTest createTest(String testName, String description, WebDriver driver) {
+		Reports.driver = driver;
+		return reports.createTest(testName, description);
 	}
 	
-	public void logs(String msg, ReportStatus reportStatus) throws IOException {
+	public static void log(ExtentTest createTest,String msg, ReportStatus reportStatus) throws IOException {
+		
+		String imagePath = "./Reports/"+reportName+"/Screenshot/";
 		
 		switch (reportStatus) {
 		
@@ -63,26 +80,27 @@ public class Reports {
 		break;*/
 			
 		case PASS:
-			takeFullScreenShot();
-			createTest.addScreenCaptureFromPath("");
+			String imageName = takeFullScreenShot();
+			createTest.addScreenCaptureFromPath(imagePath+imageName);
+			createTest.info(msg);
 			createTest.log(Status.PASS, msg);
 		break;
 		
 		case FAIL:
-			takeFullScreenShot();
-			createTest.addScreenCaptureFromPath("");
+			String imageName1 = takeFullScreenShot();
+			createTest.addScreenCaptureFromPath(imagePath+imageName1);
 			createTest.log(Status.FAIL, msg);
 		break;
 		
 		case Pass:
-			takeScreenShot();
-			createTest.addScreenCaptureFromPath("");
+			String imageName2 = takeScreenShot();
+			createTest.addScreenCaptureFromPath(imagePath+imageName2);
 			createTest.log(Status.PASS, msg);
 		break;
 		
 		case Fail:
-			takeScreenShot();
-			createTest.addScreenCaptureFromPath("");
+			String imageName3 = takeScreenShot();
+			createTest.addScreenCaptureFromPath(imagePath+imageName3);
 			createTest.log(Status.FAIL, msg);
 		break;
 		
@@ -96,30 +114,24 @@ public class Reports {
 		}
 	}
 	
-	public void closeBusinessStep() {
+	public void closeReport() {
 		reports.flush();
 	}
 	
-	public static void takeScreenShot() throws IOException {
+	public static String takeScreenShot() throws IOException {
+		String imageName = "img"+getRandomNumber()+".png";
 		TakesScreenshot scrShot =((TakesScreenshot)driver);
-		File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
-		File DestFile=new File("./Reports/Screenshot/");
-		File checkFileExists = new File("./Reports/Screenshot");
-		if(!checkFileExists.exists() && !checkFileExists.isDirectory()) {
-			if(checkFileExists.mkdir())
-				System.out.println("File Created Successfully...!");
-		}
+		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		File DestFile = new File("./Reports/"+reportName+"/Screenshot/"+imageName); 
 		FileUtils.copyFile(SrcFile, DestFile);
+		return imageName;
 	}
 	
-	public static void takeFullScreenShot() throws IOException {
-		File DestFile=new File("./Reports/Screenshot/");
-		if(!DestFile.exists() && !DestFile.isDirectory()) {
-			if(DestFile.mkdir())
-				System.out.println("Directory Created Successfully....!");
-		}
+	public static String takeFullScreenShot() throws IOException {
+		String imageName = "img"+getRandomNumber()+".png";
 		Screenshot fpScreenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
-		ImageIO.write(fpScreenshot.getImage(),"PNG",new File("D/Reports/Screenshot/Run"+getRandomNumber()+".png"));
+		ImageIO.write(fpScreenshot.getImage(),"PNG",new File("./Reports/"+reportName+"/Screenshot/"+imageName));
+		return imageName;
 	}
 	
 	public static long getRandomNumber() {

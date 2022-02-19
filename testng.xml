@@ -3,22 +3,22 @@
 
 <suite name="Automatio Practice" parallel = "none">
 
-  <!-- <test name="Chrome">
+  <test name="Chrome">
   <parameter name = "Browsername" value = "Chrome"/>
   <parameter name = "url" value = "http://automationpractice.com/"/>
   	<classes>
   		<class name="com.testNgClass.BrowserDriver"/>
   		<class name="com.runner.TestRunner"/>
     </classes>
-  </test> -->
+  </test>
   
-  <test name="Calculator">
+  <!-- <test name="Calculator">
   <parameter name = "Browsername" value = "deskTop"/>
   <parameter name = "url" value = "http://automationpractice.com/"/>
   	<classes>
   		<class name="com.testNgClass.BrowserDriver"/>
   		<class name="com.runner.DeskTop"/>
     </classes>
-  </test>
+  </test> -->
   
 </suite> 

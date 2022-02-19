@@ -19,7 +19,11 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
+import com.Reports.Reports;
+import com.aventstack.extentreports.ExtentReports;
+import com.customException.FolderNotCreated;
 import com.excelSheet.DataProviders;
 import com.testNgClass.BrowserDriver;
 
@@ -139,6 +143,10 @@ public class WebTestBase extends BrowserDriver{
 		break;
 		
 		}
+	}
+	
+	public String getTitle() {
+		return driver.getTitle();
 	}
 	
 	public void implicitWait(long seconds) {

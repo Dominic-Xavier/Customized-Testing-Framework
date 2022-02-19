@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Automatio Practice]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Calculator(failed)">
-    <parameter name="Browsername" value="deskTop"/>
+  <test thread-count="5" name="Chrome(failed)">
+    <parameter name="Browsername" value="Chrome"/>
     <parameter name="url" value="http://automationpractice.com/"/>
     <classes>
-      <class name="com.runner.DeskTop">
+      <class name="com.runner.TestRunner">
         <methods>
           <include name="setUpClass"/>
+          <include name="createReport"/>
           <include name="runScenario" invocation-numbers="0"/>
           <include name="tearDownClass"/>
         </methods>
-      </class> <!-- com.runner.DeskTop -->
+      </class> <!-- com.runner.TestRunner -->
     </classes>
-  </test> <!-- Calculator(failed) -->
+  </test> <!-- Chrome(failed) -->
 </suite> <!-- Failed suite [Automatio Practice] -->
