@@ -9,7 +9,7 @@
         <methods>
           <include name="setUpClass"/>
           <include name="createReport"/>
-          <include name="runScenario" invocation-numbers="0"/>
+          <include name="runScenario" invocation-numbers="0 1"/>
           <include name="tearDownClass"/>
         </methods>
       </class> <!-- com.runner.TestRunner -->

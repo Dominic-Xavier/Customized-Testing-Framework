@@ -21,6 +21,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.customException.FolderNotCreated;
 import com.excelSheet.DataProviders;
 
@@ -35,6 +36,7 @@ public class Reports extends DataProviders{
 	private static File report;
 	private static WebDriver driver;
 	private static String reportFolderName;
+	static ExtentTest chileNode;
 	
 	public ExtentReports createReport(String className) throws FolderNotCreated, IOException {
 		String Document_Title = getData("Document Title");
@@ -59,6 +61,7 @@ public class Reports extends DataProviders{
 		extentx = new ExtentSparkReporter("./Reports/"+name+"/Report.html");
 		extentx.config().setDocumentTitle(Document_Title);
 		extentx.config().setReportName(Report_Name);
+		extentx.config().setTheme(Theme.STANDARD);
 		reports.attachReporter(extentx);
 		
 		reports.setSystemInfo("Company Name", Company_Name);
@@ -73,12 +76,21 @@ public class Reports extends DataProviders{
 		return reports.createTest(testName, description);
 	}
 	
+	public ExtentTest getTest(ExtentTest createTest, String msg) {
+		ExtentTest chileNode = createTest.createNode(msg);
+		return chileNode;
+	}
+	
 	public static void log(ExtentTest createTest,String msg, ReportStatus reportStatus) throws IOException {
 		
 		String imagePath = System.getProperty("user.dir")+"/Reports/"+reportFolderName+"/Screenshot/";
 		String path = System.getProperty("user.dir")+"/test-recordings/"+ScreenRecorderUtil.getVideoFileName();
 		
 		switch (reportStatus) {
+		
+		case BUSINESSSTEP:
+			chileNode = createTest.createNode(msg);
+		break;
 		
 		case VIDEO:
 			createTest.log(Status.INFO, "<a href = '"+path+"'><span class = 'label info'>Download Video</span></a>");

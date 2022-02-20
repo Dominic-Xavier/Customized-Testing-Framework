@@ -557,10 +557,12 @@ public class WebTestBase extends BrowserDriver{
 	}
 	
 	public void closeTab() {
-		driver.close();
+		if(driver!=null)
+			driver.close();
 	}
 	
 	public void closeBrowser() {
-		driver.quit();
+		if(driver!=null)
+			driver.quit();
 	}
 }
