@@ -32,7 +32,7 @@ public class TestRunner extends AbstractTestNGCucumberTests {
 	
 	@BeforeClass
 	public void createReport() throws FolderNotCreated, IOException {
-		createReport = reports.createReport(this.getClass().toString());
+		createReport = reports.createReport("Run_");
 	}
 	
 	public ExtentTest createTest(String testName, String description, WebDriver driver) {

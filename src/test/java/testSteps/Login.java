@@ -35,15 +35,15 @@ public class Login extends WebTestBase{
 		//System.out.println("Browser name is "+getbrowserName());
 		String URL = getData("URL");
 		driver = Initialize(getAppName(), URL);
-		createTest = runner.createTest("Login", "Login Scenario", driver);
 		ScreenRecorderUtil.startRecord("Sample_Recording");
 		webTestBase = new WebTestBase(driver);
-		Reports.log(createTest, "BrowserOpened Successfully", ReportStatus.pass);
+		//Reports.log(createTest, "BrowserOpened Successfully", ReportStatus.pass);
 	}
 	
 	@Given("user logs into the application with username {string} and Password {string}")
 	public void user_logs_into_the_application_with_username_and_password(String username, String password) throws InterruptedException, IOException {
 		//UserCredentials userCredentials = UserCredentials.getInstance(driver);
+		createTest = runner.createTest("Login", "Login Scenario", driver);
 		userCredentials = new UserCredentials(driver, createTest);
 		userCredentials.login(username, password);
 		Reports.log(createTest, "Logged In", ReportStatus.pass);
@@ -53,6 +53,7 @@ public class Login extends WebTestBase{
 	@Given("User enters the {string} id to create an account")
 	public void user_enters_the_id_to_create_an_account(String email) throws Exception {
 		//UserCredentials userCredentials = UserCredentials.getInstance(driver);
+		createTest = runner.createTest("Register", "Registration Scenario", driver);
 		userCredentials = new UserCredentials(driver, createTest);
 		userCredentials.register(email);
 		webTestBase.closeTab();
