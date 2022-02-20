@@ -21,15 +21,17 @@ import static org.monte.media.AudioFormatKeys.*;
 import static org.monte.media.VideoFormatKeys.*;
 
 public class ScreenRecorderUtil extends ScreenRecorder{
+	
+	static String videoFileName;
 
 	private static ScreenRecorder screenRecorder;
 	public String name;
-	public ScreenRecorderUtil(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
-	Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder, String name)
-	throws IOException, AWTException {
-	super(cfg, captureArea, fileFormat, screenFormat, mouseFormat, audioFormat, movieFolder);
-	this.name = name;
- }
+		public ScreenRecorderUtil(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
+		Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder, String name)
+		throws IOException, AWTException {
+		super(cfg, captureArea, fileFormat, screenFormat, mouseFormat, audioFormat, movieFolder);
+		this.name = name;
+	 }
 
 	 @Override
 	 protected File createMovieFile(Format fileFormat) throws IOException {
@@ -40,8 +42,12 @@ public class ScreenRecorderUtil extends ScreenRecorder{
 	   throw new IOException("\"" + movieFolder + "\" is not a directory.");
 	  }
 	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss");
-	  return new File(movieFolder,
-	    name + "-" + dateFormat.format(new Date()) + "." + Registry.getInstance().getExtension(fileFormat));
+	  videoFileName = name + "-" + dateFormat.format(new Date()) + "." + Registry.getInstance().getExtension(fileFormat);
+	  return new File(movieFolder, videoFileName);
+	 }
+	 
+	 public static String getVideoFileName() {
+		 return videoFileName;
 	 }
 
 	 public static void startRecord(String methodName) throws Exception {
@@ -68,7 +74,4 @@ public class ScreenRecorderUtil extends ScreenRecorder{
 	 public static void stopRecord() throws Exception {
 		 screenRecorder.stop();
 	 }
-	
-	
-
 }

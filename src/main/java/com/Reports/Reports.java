@@ -76,13 +76,13 @@ public class Reports extends DataProviders{
 	public static void log(ExtentTest createTest,String msg, ReportStatus reportStatus) throws IOException {
 		
 		String imagePath = System.getProperty("user.dir")+"/Reports/"+reportFolderName+"/Screenshot/";
+		String path = System.getProperty("user.dir")+"/test-recordings/"+ScreenRecorderUtil.getVideoFileName();
 		
 		switch (reportStatus) {
 		
-		/*case BUSINESS:
-			reports.attachReporter(extentx);
-			createTest = reports.createTest(classNames+"_"+getRandomNumber());
-		break;*/
+		case VIDEO:
+			createTest.log(Status.INFO, "<a href = '"+path+"'><span class = 'label info'>Download Video</span></a>");
+		break;
 			
 		case PASS:
 			String imageName = takeFullScreenShot();		
@@ -96,7 +96,6 @@ public class Reports extends DataProviders{
 		
 		case Pass:
 			String imageName2 = takeScreenShot();
-			//String base64Screenshot1 = getBase64Screenshot(imagePath+imageName2);
 			createTest.pass(msg, MediaEntityBuilder.createScreenCaptureFromPath(imagePath+imageName2).build());
 		break;
 		
@@ -112,6 +111,8 @@ public class Reports extends DataProviders{
 		case fail:
 			createTest.log(Status.FAIL, msg);
 		break;
+		default:
+			break;
 		}
 	}
 	
