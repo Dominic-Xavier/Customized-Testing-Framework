@@ -93,7 +93,7 @@ public class Reports extends DataProviders{
 		break;
 		
 		case VIDEO:
-			createTest.log(Status.INFO, "<a href = '"+path+"'><span class = 'label info'>Download Video</span></a>");
+			createTest.log(Status.INFO, msg+"     "+"<a href = '"+path+"'><span class = 'label info'>Download Video</span></a>");
 		break;
 			
 		case PASS:

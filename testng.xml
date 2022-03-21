@@ -5,7 +5,6 @@
 
   <test name="Chrome">
   <parameter name = "Browsername" value = "Chrome"/>
-  <parameter name = "url" value = "http://automationpractice.com/"/>
   	<classes>
   		<class name="com.testNgClass.BrowserDriver"/>
   		<class name="com.runner.TestRunner"/>

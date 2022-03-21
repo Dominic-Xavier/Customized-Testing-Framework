@@ -22,15 +22,17 @@ import static org.monte.media.VideoFormatKeys.*;
 
 public class ScreenRecorderUtil extends ScreenRecorder{
 	
-	static String videoFileName;
-
-	private static ScreenRecorder screenRecorder;
-	public String name;
-		public ScreenRecorderUtil(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
-		Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder, String name)
-		throws IOException, AWTException {
-		super(cfg, captureArea, fileFormat, screenFormat, mouseFormat, audioFormat, movieFolder);
-		this.name = name;
+	public static ScreenRecorder screenRecorder;
+	 public static String name;
+	 public ScreenRecorderUtil(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
+	   Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder, String names)
+	     throws IOException, AWTException {
+	  super(cfg, captureArea, fileFormat, screenFormat, mouseFormat, audioFormat, movieFolder);
+	  name = names;
+	 }
+	 
+	 public static String getVideoFileName() {
+		 return name;
 	 }
 
 	 @Override
@@ -42,36 +44,32 @@ public class ScreenRecorderUtil extends ScreenRecorder{
 	   throw new IOException("\"" + movieFolder + "\" is not a directory.");
 	  }
 	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss");
-	  videoFileName = name + "-" + dateFormat.format(new Date()) + "." + Registry.getInstance().getExtension(fileFormat);
-	  return new File(movieFolder, videoFileName);
-	 }
-	 
-	 public static String getVideoFileName() {
-		 return videoFileName;
+	  return new File(movieFolder,
+	    name + "-" + dateFormat.format(new Date()) + "." + Registry.getInstance().getExtension(fileFormat));
 	 }
 
 	 public static void startRecord(String methodName) throws Exception {
-		  File file = new File("./test-recordings/");
-		  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		  int width = screenSize.width;
-		  int height = screenSize.height;
-	
-		  Rectangle captureSize = new Rectangle(0, 0, width, height);
-	
-		  GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().
-		  getDefaultScreenDevice().getDefaultConfiguration();
-		  
-		  screenRecorder = new ScreenRecorderUtil(gc, captureSize,
-			new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
-			new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
-			CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 24, FrameRateKey,
-			Rational.valueOf(15), QualityKey, 1.0f, KeyFrameIntervalKey, 15 * 60),
-			new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black", FrameRateKey, Rational.valueOf(30)),
-			null, file, methodName);
-		  screenRecorder.start();
+	  File file = new File("./test-recordings/");
+	  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	  int width = screenSize.width;
+	  int height = screenSize.height;
+
+	  Rectangle captureSize = new Rectangle(0, 0, width, height);
+
+	  GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().
+	    getDefaultScreenDevice()
+	    .getDefaultConfiguration();
+	  screenRecorder = new ScreenRecorderUtil(gc, captureSize,
+	    new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
+	    new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
+	      CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 24, FrameRateKey,
+	      Rational.valueOf(15), QualityKey, 1.0f, KeyFrameIntervalKey, 15 * 60),
+	    new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black", FrameRateKey, Rational.valueOf(30)),
+	    null, file, methodName);
+	  screenRecorder.start();
 	 }
 
 	 public static void stopRecord() throws Exception {
-		 screenRecorder.stop();
+	  screenRecorder.stop();
 	 }
 }

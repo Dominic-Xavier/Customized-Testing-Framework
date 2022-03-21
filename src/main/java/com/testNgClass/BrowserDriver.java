@@ -3,6 +3,7 @@ package com.testNgClass;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -28,6 +29,7 @@ import com.customException.FolderNotCreated;
 import com.excelSheet.DataProviders;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
 
 public class BrowserDriver extends DataProviders{
 

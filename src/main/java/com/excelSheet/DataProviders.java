@@ -13,9 +13,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 public class DataProviders {
-
-	private static final String filePath = "./EnvConfig.xls";
-	private static final String sheetName = "Configuration";
+	
 	private static FileInputStream inputStream;
 	private static Workbook workbook;
 	private static Sheet sheet;
@@ -32,7 +30,7 @@ public class DataProviders {
 		return dp;
 	}*/
 	
-	private synchronized Map<String, String> getExcelSheet() throws IOException {
+	private synchronized Map<String, String> getExcelSheet(String filePath, String sheetName) throws IOException {
 		inputStream = new FileInputStream(new File(filePath));
 		workbook = new HSSFWorkbook(inputStream);
 		sheet = workbook.getSheet(sheetName);
@@ -82,11 +80,13 @@ public class DataProviders {
 	
 	public synchronized String getData(String key) throws IOException {
 		if(isgetDataExecuted)
-			getExcelSheet();
+			getExcelSheet(Parameter.CONFIG_FILE_NAME.getKey(), Parameter.CONFIG_SHEET_NAME.getKey());
 		return map.get(key);
 	}
 	
-	
+	public synchronized String getQuery(String key) throws IOException {
+		if(isgetDataExecuted)
+			getExcelSheet(Parameter.DATABASE_FILE_NAME.getKey(), Parameter.DATABASE_SHEET__NAME.getKey());
+		return map.get(key);
+	}
 }
-
-

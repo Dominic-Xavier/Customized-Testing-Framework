@@ -21,7 +21,6 @@ public class Login extends WebTestBase{
 	private UserCredentials userCredentials;
 	private TestRunner runner = new TestRunner();
 	private ExtentTest createTest;
-	private Reports reports = new Reports();
 	
 	@Given("user opens app and passes URL")
 	public void user_opens_app_and_passes_url() throws Exception {
@@ -52,19 +51,20 @@ public class Login extends WebTestBase{
 		//UserCredentials userCredentials = UserCredentials.getInstance(driver);
 		createTest = runner.createTest("Register", "Registration Scenario", driver);
 		//Reports.log(createTest, "Registering Email ID", ReportStatus.BUSINESSSTEP);
-		ExtentTest test = new Reports().getTest(createTest, "Logging In");
+		ExtentTest test = new Reports().getTest(createTest, "Registering User");
 		ScreenRecorderUtil.startRecord("Sample_Recording");
 		userCredentials = new UserCredentials(driver, test);
 		userCredentials.register(email);
 		webTestBase.closeTab();
 		ScreenRecorderUtil.stopRecord();
 		Reports.log(test, "Regestered Successfully", ReportStatus.pass);
-		Reports.log(test, "", ReportStatus.VIDEO);
+		Reports.log(test, "Pased", ReportStatus.VIDEO);
 	}
 	
 	@After
 	public void close() {
-		webTestBase.closeBrowser();
+		if(webTestBase!=null)
+			webTestBase.closeBrowser();
 		runner.closeReports();
 	}
 }

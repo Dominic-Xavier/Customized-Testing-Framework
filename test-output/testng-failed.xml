@@ -3,7 +3,6 @@
 <suite name="Failed suite [Automatio Practice]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Chrome(failed)">
     <parameter name="Browsername" value="Chrome"/>
-    <parameter name="url" value="http://automationpractice.com/"/>
     <classes>
       <class name="com.runner.TestRunner">
         <methods>
