@@ -1,9 +1,7 @@
 package com.testNgClass;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -23,19 +21,19 @@ import org.testng.annotations.Test;
 import com.Baseclass.AUTOMATOR;
 import com.Baseclass.DesktopTestBase;
 import com.Baseclass.MobileTestBase;
-import com.Baseclass.OS;
 import com.customException.BrowserException;
-import com.customException.FolderNotCreated;
 import com.excelSheet.DataProviders;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.config.DriverManagerType;
 
 public class BrowserDriver extends DataProviders{
 
 	public static WebDriver driver;
 	private static String browserName;
 	public static DataProviders dp = new DataProviders();
+	public static AppiumDriver androidDriver;
 	
 	@BeforeClass
 	public WebDriver getRemoteDriver() throws IOException {
@@ -83,9 +81,9 @@ public class BrowserDriver extends DataProviders{
 		return browserName;
 	}
 	
-	
+	//User to launch WebApp
 	public static WebDriver Initialize(String browserName, String URL) throws BrowserException, IOException {
-		System.err.println("Browser name is "+browserName);
+		System.err.println("Browser name in Initialize is "+browserName);
 		switch (browserName.toUpperCase()) {
 		case "CHROME":
 			WebDriverManager.chromedriver().setup();
@@ -135,6 +133,19 @@ public class BrowserDriver extends DataProviders{
 			driver = opera;
 		return opera;
 		
+		case "DESKTOP":
+			driver = new DesktopTestBase().getWiniumDriver();
+		return driver;
+		
+		default:
+			throw new BrowserException();
+		}
+	}
+	
+	
+	//Used to launch Mobile app
+	public AppiumDriver MobileDevice(String OSName) throws IOException {
+		switch (OSName.toUpperCase()) {
 		case "ANDROID":
 			String deivceName = dp.getData("Device Name");
 			String UdId = dp.getData("UDID");
@@ -145,9 +156,9 @@ public class BrowserDriver extends DataProviders{
 			String Ip = dp.getData("Ip Address");
 			String Port = dp.getData("Port");
 			String Path = dp.getData("Path");
-			driver = new MobileTestBase().launchAndroidApp(deivceName, UdId, PlatformName, PlatformVersion, AppPackage, 
+			androidDriver = new MobileTestBase().launchAndroidApp(deivceName, UdId, PlatformName, PlatformVersion, AppPackage, 
 					AppActivity, AUTOMATOR.UIautomator2, Ip, Port, Path);
-		return driver;
+			break;
 		
 		case "IOS":
 			String deivceName1 = dp.getData("Device Name");
@@ -159,17 +170,11 @@ public class BrowserDriver extends DataProviders{
 			String Ip1 = dp.getData("Ip Address");
 			String Port1 = dp.getData("Port");
 			String Path1 = dp.getData("Path");
-			driver = new MobileTestBase().launchAndroidApp(deivceName1, UdId1, PlatformName1, PlatformVersion1, AppPackage1, 
-					AppActivity1, AUTOMATOR.UIautomator2, Ip1, Port1, Path1);
-		return driver;
-		
-		case "DESKTOP":
-			driver = new DesktopTestBase().getWiniumDriver();
-		return driver;
-		
-		default:
-			throw new BrowserException();
+			androidDriver = new MobileTestBase().launchAndroidApp(deivceName1, UdId1, PlatformName1, PlatformVersion1, AppPackage1, 
+					AppActivity1, AUTOMATOR.XCUITest, Ip1, Port1, Path1);
+			break;
 		}
+		return androidDriver;
 	}
 	
 	public WebDriver getWebDriver() {

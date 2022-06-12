@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.flipkart</groupId>
-  <artifactId>Flipkart</artifactId>
+  <groupId>Genovation</groupId>
+  <artifactId>Astrac</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>Flipkart</name>
-  <description>This is an E-Commerce Site</description>
+  <name>Astrac</name>
+  <description>This is a web app which is used to manage tasks</description>
   
   <build>
   	<plugins>
@@ -101,8 +101,10 @@
 	<dependency>
 	    <groupId>io.appium</groupId>
 	    <artifactId>java-client</artifactId>
-	    <version>7.6.0</version>
+	    <version>8.1.1</version>
 	</dependency>
+
+
 	
 	<!-- <dependency>
 	    <groupId>tech.grasshopper</groupId>

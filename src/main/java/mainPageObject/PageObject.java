@@ -1,5 +1,8 @@
 package mainPageObject;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +12,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public abstract class PageObject {
-	private WebDriver driver;
+import com.Baseclass.WebTestBase;
+
+public abstract class PageObject extends WebTestBase{
+	public WebDriver driver;
 	private static final Map<String, By> elementDatas = new HashMap<String, By>();
 	public PageObject(WebDriver driver) {
 		this.driver = driver;

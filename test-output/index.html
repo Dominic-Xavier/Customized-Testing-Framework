@@ -24,23 +24,23 @@
   <body>
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
-      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
+      <button class="button" id="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 3 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
         <span>All suites</span>
-        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
-          <img src="collapseall.gif" class="collapse-all-icon">
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
           </img> <!-- collapse-all-icon -->
         </a> <!-- collapse-all-link -->
       </div> <!-- navigator-suite-header -->
       <div class="suite">
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
-            <a href="#" panel-name="suite-Automatio_Practice" class="navigator-link">
-              <span class="suite-name border-passed">Automatio Practice</span>
+            <a href="#" class="navigator-link" panel-name="suite-Automatio_Practice">
+              <span class="suite-name border-failed">Automatio Practice</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -50,37 +50,37 @@
             <div class="suite-section-content">
               <ul>
                 <li>
-                  <a href="#" panel-name="test-xml-Automatio_Practice" class="navigator-link ">
+                  <a href="#" class="navigator-link " panel-name="test-xml-Automatio_Practice">
                     <span>testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="testlist-Automatio_Practice" class="navigator-link ">
+                  <a href="#" class="navigator-link " panel-name="testlist-Automatio_Practice">
                     <span class="test-stats">1 test</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="group-Automatio_Practice" class="navigator-link ">
+                  <a href="#" class="navigator-link " panel-name="group-Automatio_Practice">
                     <span>1 group</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="times-Automatio_Practice" class="navigator-link ">
+                  <a href="#" class="navigator-link " panel-name="times-Automatio_Practice">
                     <span>Times</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="reporter-Automatio_Practice" class="navigator-link ">
+                  <a href="#" class="navigator-link " panel-name="reporter-Automatio_Practice">
                     <span>Reporter output</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="ignored-methods-Automatio_Practice" class="navigator-link ">
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Automatio_Practice">
                     <span>Ignored methods</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="chronological-Automatio_Practice" class="navigator-link ">
+                  <a href="#" class="navigator-link " panel-name="chronological-Automatio_Practice">
                     <span>Chronological view</span>
                   </a> <!-- navigator-link  -->
                 </li>
@@ -93,7 +93,31 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods,   3 passed</span>
+                    <span class="method-stats">4 methods, 3 failed,   1 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Automatio_Practice" class="hide-methods failed suite-Automatio_Practice"> (hide)</a> <!-- hide-methods failed suite-Automatio_Practice -->
+                      <a href="#" panel-name="suite-Automatio_Practice" class="show-methods failed suite-Automatio_Practice"> (show)</a> <!-- show-methods failed suite-Automatio_Practice -->
+                    </span>
+                    <div class="method-list-content failed suite-Automatio_Practice">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Automatio_Practice" title="com.runner.TestRunner" hash-for-method="runScenario(&quot;Adding Income&quot;, &quot;Optional[ExpenseIncome]&quot;)">runScenario("Adding Income", "Optional[ExpenseIncome]")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Automatio_Practice" title="com.runner.TestRunner" hash-for-method="runScenario(&quot;Adding Expenses&quot;, &quot;Optional[ExpenseIncome]&quot;)">runScenario("Adding Expenses", "Optional[ExpenseIncome]")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Automatio_Practice" title="com.runner.TestRunner" hash-for-method="runScenario(&quot;Transfer Cash&quot;, &quot;Optional[ExpenseIncome]&quot;)">runScenario("Transfer Cash", "Optional[ExpenseIncome]")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Automatio_Practice -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,18 +127,8 @@
                     </span>
                     <div class="method-list-content passed suite-Automatio_Practice">
                       <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Automatio_Practice" title="com.testNgClass.BrowserDriver" class="method navigator-link" hash-for-method="browserName(Chrome)">browserName(Chrome)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Automatio_Practice" title="com.runner.TestRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Login Scenario&quot;, &quot;Optional[Login]&quot;)">runScenario("Login Scenario", "Optional[Login]")</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Automatio_Practice" title="com.runner.TestRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Register&quot;, &quot;Optional[Login]&quot;)">runScenario("Register", "Optional[Login]")</a> <!-- method navigator-link -->
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Automatio_Practice" title="com.testNgClass.BrowserDriver" hash-for-method="browserName(Android)">browserName(Android)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Automatio_Practice -->
@@ -129,6 +143,146 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Automatio_Practice" class="panel Automatio_Practice">
+          <div class="suite-Automatio_Practice-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.runner.TestRunner</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Adding Income&quot;, &quot;Optional[ExpenseIncome]&quot;)">
+                  </a> <!-- runScenario("Adding Income", "Optional[ExpenseIncome]") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Adding Income", "Optional[ExpenseIncome]")</span>
+                  <div class="stack-trace">java.lang.NoClassDefFoundError: org/openqa/selenium/remote/internal/JsonToWebElementConverter
+	at com.Baseclass.MobileTestBase.launchAndroidApp(MobileTestBase.java:29)
+	at com.testNgClass.BrowserDriver.MobileDevice(BrowserDriver.java:160)
+	at testSteps.ExpenseIncome.user_launches_the_application(ExpenseIncome.java:35)
+	at ✽.user launches the application(file:///home/dominic/eclipse-workspace/Customized-Testing-Framework/./src/test/resources/testSteps/ExpenseIncome.feature:5)
+Caused by: java.lang.ClassNotFoundException: org.openqa.selenium.remote.internal.JsonToWebElementConverter
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at com.Baseclass.MobileTestBase.launchAndroidApp(MobileTestBase.java:29)
+	at com.testNgClass.BrowserDriver.MobileDevice(BrowserDriver.java:160)
+	at testSteps.ExpenseIncome.user_launches_the_application(ExpenseIncome.java:35)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:86)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:57)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:95)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$3(CucumberExecutionContext.java:110)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:110)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+... Removed 31 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Adding Expenses&quot;, &quot;Optional[ExpenseIncome]&quot;)">
+                  </a> <!-- runScenario("Adding Expenses", "Optional[ExpenseIncome]") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Adding Expenses", "Optional[ExpenseIncome]")</span>
+                  <div class="stack-trace">java.lang.NoClassDefFoundError: org/openqa/selenium/remote/internal/JsonToWebElementConverter
+	at com.Baseclass.MobileTestBase.launchAndroidApp(MobileTestBase.java:29)
+	at com.testNgClass.BrowserDriver.MobileDevice(BrowserDriver.java:160)
+	at testSteps.ExpenseIncome.user_launches_the_application(ExpenseIncome.java:35)
+	at ✽.user launches the application(file:///home/dominic/eclipse-workspace/Customized-Testing-Framework/./src/test/resources/testSteps/ExpenseIncome.feature:5)
+Caused by: java.lang.ClassNotFoundException: org.openqa.selenium.remote.internal.JsonToWebElementConverter
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at com.Baseclass.MobileTestBase.launchAndroidApp(MobileTestBase.java:29)
+	at com.testNgClass.BrowserDriver.MobileDevice(BrowserDriver.java:160)
+	at testSteps.ExpenseIncome.user_launches_the_application(ExpenseIncome.java:35)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:86)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:57)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:95)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$3(CucumberExecutionContext.java:110)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:110)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+... Removed 31 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Transfer Cash&quot;, &quot;Optional[ExpenseIncome]&quot;)">
+                  </a> <!-- runScenario("Transfer Cash", "Optional[ExpenseIncome]") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Transfer Cash", "Optional[ExpenseIncome]")</span>
+                  <div class="stack-trace">java.lang.NoClassDefFoundError: org/openqa/selenium/remote/internal/JsonToWebElementConverter
+	at com.Baseclass.MobileTestBase.launchAndroidApp(MobileTestBase.java:29)
+	at com.testNgClass.BrowserDriver.MobileDevice(BrowserDriver.java:160)
+	at testSteps.ExpenseIncome.user_launches_the_application(ExpenseIncome.java:35)
+	at ✽.user launches the application(file:///home/dominic/eclipse-workspace/Customized-Testing-Framework/./src/test/resources/testSteps/ExpenseIncome.feature:5)
+Caused by: java.lang.ClassNotFoundException: org.openqa.selenium.remote.internal.JsonToWebElementConverter
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at com.Baseclass.MobileTestBase.launchAndroidApp(MobileTestBase.java:29)
+	at com.testNgClass.BrowserDriver.MobileDevice(BrowserDriver.java:160)
+	at testSteps.ExpenseIncome.user_launches_the_application(ExpenseIncome.java:35)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:86)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:57)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:95)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$3(CucumberExecutionContext.java:110)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:110)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+... Removed 31 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Automatio_Practice-class-failed -->
           <div class="suite-Automatio_Practice-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -137,38 +291,10 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="browserName(Chrome)">
-                  </a> <!-- browserName(Chrome) -->
+                  <a name="browserName(Android)">
+                  </a> <!-- browserName(Android) -->
                   <span class="method-name">browserName</span>
-                  <span class="parameters">(Chrome)</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Automatio_Practice-class-passed -->
-          <div class="suite-Automatio_Practice-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.runner.TestRunner</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="runScenario(&quot;Login Scenario&quot;, &quot;Optional[Login]&quot;)">
-                  </a> <!-- runScenario("Login Scenario", "Optional[Login]") -->
-                  <span class="method-name">runScenario</span>
-                  <span class="parameters">("Login Scenario", "Optional[Login]")</span>
-                  <em>
-(Runs Cucumber Scenarios)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="runScenario(&quot;Register&quot;, &quot;Optional[Login]&quot;)">
-                  </a> <!-- runScenario("Register", "Optional[Login]") -->
-                  <span class="method-name">runScenario</span>
-                  <span class="parameters">("Register", "Optional[Login]")</span>
-                  <em>
-(Runs Cucumber Scenarios)                  </em>
+                  <span class="parameters">(Android)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -182,14 +308,14 @@
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite name=&quot;Automatio Practice&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Chrome&quot;&gt;
-    &lt;parameter name=&quot;Browsername&quot; value=&quot;Chrome&quot;/&gt;
+&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Automatio Practice&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Android&quot;&gt;
+    &lt;parameter name=&quot;Browsername&quot; value=&quot;Android&quot;/&gt;
     &lt;classes&gt;
       &lt;class name=&quot;com.testNgClass.BrowserDriver&quot;/&gt;
       &lt;class name=&quot;com.runner.TestRunner&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- Chrome --&gt;
+  &lt;/test&gt; &lt;!-- Android --&gt;
 &lt;/suite&gt; &lt;!-- Automatio Practice --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -201,7 +327,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Chrome (2 classes)</span>
+                <span class="test-name">Android (2 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -235,24 +361,28 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(4);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'runScenario')
 data.setCell(0, 2, 'com.runner.TestRunner')
-data.setCell(0, 3, 15637);
+data.setCell(0, 3, 383);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'runScenario')
 data.setCell(1, 2, 'com.runner.TestRunner')
-data.setCell(1, 3, 9777);
+data.setCell(1, 3, 30);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'browserName')
-data.setCell(2, 2, 'com.testNgClass.BrowserDriver')
-data.setCell(2, 3, 4);
+data.setCell(2, 1, 'runScenario')
+data.setCell(2, 2, 'com.runner.TestRunner')
+data.setCell(2, 3, 26);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'browserName')
+data.setCell(3, 2, 'com.testNgClass.BrowserDriver')
+data.setCell(3, 3, 5);
 window.suiteTableData['Automatio_Practice']= { tableData: data, tableDiv: 'times-div-Automatio_Practice'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 25 seconds</span>
+              <span class="suite-total-time">Total running time: 444 ms</span>
               <div id="times-div-Automatio_Practice">
               </div> <!-- times-div-Automatio_Practice -->
             </div> <!-- times-div -->
@@ -284,31 +414,41 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">browserName(Chrome)</span>
-                <span class="method-start">323 ms</span>
+                <span class="method-name">browserName(Android)</span>
+                <span class="method-start">305 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.runner.TestRunner</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">setUpClass(org.testng.TestRunner@6fa3def8)</span>
-                <span class="method-start">331 ms</span>
+                <span class="method-name">setUpClass(org.testng.TestRunner@53ac845a)</span>
+                <span class="method-start">314 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-class before">
                 <span class="method-name">createReport</span>
-                <span class="method-start">835 ms</span>
+                <span class="method-start">765 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">runScenario("Login Scenario", "Optional[Login]")</span>
-                <span class="method-start">992 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("Transfer Cash", "Optional[ExpenseIncome]")</span>
+                <span class="method-start">928 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <span class="method-name">runScenario("Register", "Optional[Login]")</span>
-                <span class="method-start">16631 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("Adding Expenses", "Optional[ExpenseIncome]")</span>
+                <span class="method-start">1313 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("Adding Income", "Optional[ExpenseIncome]")</span>
+                <span class="method-start">1344 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">26410 ms</span>
+                <span class="method-start">1377 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -18,7 +18,7 @@ public class DataProviders {
 	private static Workbook workbook;
 	private static Sheet sheet;
 	private static String[][] values; 
-	private static final Map<String, String> map = new HashMap<>();
+	private static final Map<String, String> map = new HashMap<String, String>();
 	private static boolean isgetDataExecuted = true;
 	
 	//private static DataProviders dp;
