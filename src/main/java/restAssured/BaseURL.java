@@ -8,7 +8,7 @@ import com.Baseclass.WebTestBase;
 
 import io.restassured.path.json.JsonPath;
 
-public class BaseURL extends WebTestBase{
+public class BaseURL extends WebTestBase {
 	
 	@BeforeClass
 	public void url() {

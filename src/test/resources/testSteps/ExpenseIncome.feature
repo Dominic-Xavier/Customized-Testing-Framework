@@ -2,7 +2,14 @@ Feature: ExpenseIncome
 Description: CRUD Operations on Expenses and Income
 
 Background:
-	Given user launches the applicatio
+	Given user launches the application
+	
+Scenario Outline: Transfer Cash
+	Given user clicks on transferIcon
+	When user enters in "<Amount>" and click on back
+Examples:
+|Amount|
+| 600  |
 
 Scenario Outline: Adding Expenses
 	Given user clicks on Expense button to add expense
@@ -20,12 +27,3 @@ Examples:
 |Amount|
 |300|
 
-Scenario Outline: Transfer Cash
-	Given user clicks on transferIcon
-	When user enters in "<Amount>" and click on back
-	Then the amount must get displayed in the selected category
-	When user click on transfer and transfers money
-	Then verify that the transferred amount is shown or not 
-Examples:
-|Amount|
-| 600  |

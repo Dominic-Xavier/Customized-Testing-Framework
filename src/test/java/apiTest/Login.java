@@ -36,7 +36,7 @@ public class Login extends WebTestBase{
 		//UserCredentials userCredentials = UserCredentials.getInstance(driver);
 		createTest = runner.createTest("Login", "Login Scenario", driver);
 		//Reports.log(createTest, "Log into app", ReportStatus.BUSINESSSTEP);
-		ExtentTest test = new Reports().getTest(createTest, "Logging In");
+		ExtentTest test = new Reports().createNode(createTest, "Logging In");
 		ScreenRecorderUtil.startRecord("Sample_Recording");
 		userCredentials = new UserCredentials(driver, test);
 		userCredentials.login(username, password);
@@ -51,7 +51,7 @@ public class Login extends WebTestBase{
 		//UserCredentials userCredentials = UserCredentials.getInstance(driver);
 		createTest = runner.createTest("Register", "Registration Scenario", driver);
 		//Reports.log(createTest, "Registering Email ID", ReportStatus.BUSINESSSTEP);
-		ExtentTest test = new Reports().getTest(createTest, "Registering User");
+		ExtentTest test = new Reports().createNode(createTest, "Registering User");
 		ScreenRecorderUtil.startRecord("Sample_Recording");
 		userCredentials = new UserCredentials(driver, test);
 		userCredentials.register(email);

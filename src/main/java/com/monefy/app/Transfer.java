@@ -1,12 +1,17 @@
 package com.monefy.app;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.Reports.ReportStatus;
+import com.Reports.Reports;
 import com.aventstack.extentreports.ExtentTest;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 
 public class Transfer {
@@ -21,8 +26,11 @@ public class Transfer {
 	@FindBy(id = "com.monefy.app.lite:id/overflow")
 	private WebElement clickDots;
 	
-	@FindBy(id = "com.monefy.app.lite:id/accounts_imagebutton")
+	@FindBy(xpath = "//*[@resource-id='com.monefy.app.lite:id/accounts_button']")
 	private WebElement clickAccounts;
+	
+	@FindBy(id = "com.monefy.app.lite:id/accounts_button")
+	private WebElement clickAccountss;
 	
 	@FindBy(xpath = "//android.widget.LinearLayout/android.widget.TextView[1]")
 	private WebElement cash;
@@ -30,7 +38,7 @@ public class Transfer {
 	@FindBy(id = "com.monefy.app.lite:id/initialAmount")
 	private WebElement accountBalance;
 	
-	@FindBy(id = "AppiumBy")
+	@FindBy(id = "Navigate up")
 	private WebElement backNavigation;
 	
 	@FindBy(id = "com.monefy.app.lite:id/transfer_menu_item")
@@ -52,16 +60,27 @@ public class Transfer {
 		transferIcon.click();
 	}
 	
-	public void clickDots(){
+	public void clickDots() throws IOException{
 		clickDots.click();
+		Reports.log(extentTest, "Clicked threeDots", ReportStatus.Pass);
 	}
 	
-	public void openCash(String amount) throws InterruptedException {
-		Thread.sleep(2000);
-		clickAccounts.click();
-		cash.click();
-		accountBalance.sendKeys(amount);
-		backNavigation.click();
+	public void openCash(String amount) throws InterruptedException, IOException {
+		Thread.sleep(3000);
+		//driver.switchTo().frame(1);
+		try {
+			clickAccountss.click();
+			Reports.log(extentTest, "Clicked Accounts", ReportStatus.Pass);
+			cash.click();
+			Reports.log(extentTest, "Clicked Cash", ReportStatus.Pass);
+			accountBalance.sendKeys(amount);
+			driver.findElement(AppiumBy.accessibilityId("Navigate up")).click();
+			Reports.log(extentTest, "Clicked Back button", ReportStatus.Pass);
+			//backNavigation.click();
+		}
+		catch (Exception e) {
+			Reports.log(extentTest, "Options did not click", ReportStatus.Fail);
+		}
 	}
 	
 	public void transFerMoney(String amount, int firstIndex, int secondIndex) {

@@ -54,7 +54,7 @@ public class Team extends WebTestBase{
 	@Given("User clicks on add team button")
 	public void user_clicks_on_add_team_button() throws IOException, InterruptedException {
 		createTest = runner.createTest(scenarioName, "Adding a team Team", driver);
-		ExtentTest test = new Reports().getTest(createTest, "Logging In");
+		ExtentTest test = new Reports().createNode(createTest, "Logging In");
 		team = new TeamPageObj(driver, test);
 		team.clickAddTeam();
 	}

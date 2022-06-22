@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Automatio Practice]">
-  <test thread-count="5" name="Android(failed)">
-    <parameter name="Browsername" value="Android"/>
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.runner.TestRunner">
+      <class name="testSteps.NewTest">
         <methods>
-          <include name="setUpClass"/>
-          <include name="createReport"/>
-          <include name="runScenario" invocation-numbers="0 1 2"/>
-          <include name="tearDownClass"/>
+          <include name="f"/>
         </methods>
-      </class> <!-- com.runner.TestRunner -->
+      </class> <!-- testSteps.NewTest -->
     </classes>
-  </test> <!-- Android(failed) -->
-</suite> <!-- Failed suite [Automatio Practice] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

@@ -76,7 +76,7 @@ public class Reports extends DataProviders{
 		return reports.createTest(testName, description);
 	}
 	
-	public ExtentTest getTest(ExtentTest createTest, String msg) {
+	public ExtentTest createNode(ExtentTest createTest, String msg) {
 		ExtentTest chileNode = createTest.createNode(msg);
 		return chileNode;
 	}

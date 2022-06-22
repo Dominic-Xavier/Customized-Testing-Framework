@@ -1,5 +1,6 @@
 package com.monefy.app;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -10,12 +11,17 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 import com.Baseclass.WebTestBase;
+import com.Reports.ReportStatus;
+import com.Reports.Reports;
 import com.aventstack.extentreports.ExtentTest;
 
 public class ExpOrInc extends WebTestBase{
 	
+	ExtentTest createTest;
+	
 	public ExpOrInc(WebDriver driver, ExtentTest createTest){
 		super(driver);
+		this.createTest = createTest;
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -60,22 +66,29 @@ public class ExpOrInc extends WebTestBase{
 			driver.findElement(By.id("com.monefy.app.lite:id/buttonKeyboard"+number.charAt(i)));
 	}
 	
-	public void clickExpenseOrIncome(String choice) {
-		if(choice.equals("Expense"))
+	public void clickExpenseOrIncome(String choice) throws IOException {
+		if(choice.equals("Expense")) {
 			expenseButton.click();
-		else
+			Reports.log(createTest, choice+" clicked...!!", ReportStatus.Pass);
+		}
+			
+		else {
 			incomeButton.click();
+			Reports.log(createTest, choice+" clicked...!!", ReportStatus.Pass);
+		}
 	}
 	
-	public String addExpenseOrIncome(String number, int index) {
+	public String addExpenseOrIncome(String number, int index) throws IOException {
 		
 		for(int i=0;i<number.length();i++)
 			driver.findElement(By.id("com.monefy.app.lite:id/buttonKeyboard"+number.charAt(i))).click();
+		Reports.log(createTest, number, ReportStatus.Pass);
 		btnchooseCategory.click();
 		String category;
 		WebElement element;
 		element = driver.findElement(By.xpath("//android.widget.GridView/android.widget.FrameLayout["+index+"]/android.widget.LinearLayout/android.widget.TextView"));
 		category = element.getText();
+		Reports.log(createTest, "Categiry text "+category, ReportStatus.Pass);
 		System.out.println("Category Text are "+category);
 		element.click();
 		return category;

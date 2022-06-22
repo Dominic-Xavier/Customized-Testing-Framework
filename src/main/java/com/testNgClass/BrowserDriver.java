@@ -1,6 +1,7 @@
 package com.testNgClass;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.Platform;
@@ -18,17 +19,21 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.Baseclass.AUTOMATOR;
+import com.Baseclass.CloudConnection;
 import com.Baseclass.DesktopTestBase;
 import com.Baseclass.MobileTestBase;
 import com.customException.BrowserException;
 import com.excelSheet.DataProviders;
 
+import enumVariales.AUTOMATOR;
+import enumVariales.BrowserName;
+import enumVariales.CloudPlatform;
+import enumVariales.MobileOS;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BrowserDriver extends DataProviders{
+public class BrowserDriver extends DataProviders {
 
 	public static WebDriver driver;
 	private static String browserName;
@@ -145,8 +150,8 @@ public class BrowserDriver extends DataProviders{
 	
 	//Used to launch Mobile app
 	public AppiumDriver MobileDevice(String OSName) throws IOException {
-		switch (OSName.toUpperCase()) {
-		case "ANDROID":
+		switch (OSName) {
+		case "Android":
 			String deivceName = dp.getData("Device Name");
 			String UdId = dp.getData("UDID");
 			String PlatformName = dp.getData("Platform Name");
@@ -160,7 +165,7 @@ public class BrowserDriver extends DataProviders{
 					AppActivity, AUTOMATOR.UIautomator2, Ip, Port, Path);
 			break;
 		
-		case "IOS":
+		case "iOS":
 			String deivceName1 = dp.getData("Device Name");
 			String UdId1 = dp.getData("UDID");
 			String PlatformName1 = dp.getData("Platform Name");
@@ -175,6 +180,38 @@ public class BrowserDriver extends DataProviders{
 			break;
 		}
 		return androidDriver;
+	}
+	
+	public WebDriver executeTestInCloud(CloudPlatform platform, String browserName) throws IOException, BrowserException {
+		switch (platform) {
+		
+			case BROWSERSTACK:
+				String userrname1 = dp.getData("username stack");
+				String accessKey1 = dp.getData("accessKey stack");
+				String url1 = dp.getData("URL BrowserStack");
+				String testName = dp.getData("Test Name");
+				String osName = dp.getData("Stack Os Name");
+				String osVersion = dp.getData("Stack Os Version");
+				String browserVersion1 = dp.getData("stack browser version");
+				driver = CloudConnection.connectwithBrowserStack(userrname1, accessKey1, url1, testName, osName, osVersion, browserName, browserVersion1);
+			break;
+				
+			case SAUCELABS:
+				String buildName = dp.getData("build");
+				String SeleniumVersion = dp.getData("seleniumVersion");
+				String userrname = dp.getData("username");
+				String accessKey = dp.getData("accessKey"); 
+				String tags = dp.getData("tags");
+				String url = dp.getData("URL Sauce");
+				String browserVersion = dp.getData("Browser Version");
+				driver = CloudConnection.connectWithSauceLabs(buildName, SeleniumVersion, userrname, accessKey, tags, browserName, browserVersion, url);
+			break;
+		}
+		return driver;
+	}
+	
+	public void sauceLabs(BrowserName browserName) throws MalformedURLException {
+		driver = CloudConnection.connectWithSauceLabs(browserName);
 	}
 	
 	public WebDriver getWebDriver() {
