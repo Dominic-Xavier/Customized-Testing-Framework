@@ -72,7 +72,7 @@ public class DataProviders {
 		
 	    for (String[] m : list) {
 	      if (map.put(m[0], m[1]) != null) {
-	        //throw new IllegalStateException("Duplicate key");
+	        throw new IllegalStateException("Duplicate key");
 	      }
 	    }
 	    return map;
