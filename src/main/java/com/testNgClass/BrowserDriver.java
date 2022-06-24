@@ -204,7 +204,8 @@ public class BrowserDriver extends DataProviders {
 				String tags = dp.getData("tags");
 				String url = dp.getData("URL Sauce");
 				String browserVersion = dp.getData("Browser Version");
-				driver = CloudConnection.connectWithSauceLabs(buildName, SeleniumVersion, userrname, accessKey, tags, browserName, browserVersion, url);
+				String oSName = dp.getData("Os Name");
+				driver = CloudConnection.connectWithSauceLabs(buildName, SeleniumVersion, oSName, userrname, accessKey, tags, browserName, browserVersion, url);
 			break;
 		}
 		return driver;

@@ -19,7 +19,7 @@ public class CloudConnection {
 	private static WebDriver driver;
 	private static final MutableCapabilities sauceLabs = new MutableCapabilities();
 	private static final DesiredCapabilities cap = new DesiredCapabilities();
-	public static WebDriver connectWithSauceLabs(String buildName, String SeleniumVersion, String userrname, String accessKey, String tags, String browserName,String browserVersion, String url) throws BrowserException, MalformedURLException {
+	public static WebDriver connectWithSauceLabs(String buildName, String SeleniumVersion, String oSName, String userrname, String accessKey, String tags, String browserName,String browserVersion, String url) throws BrowserException, MalformedURLException {
 		sauceLabs.setCapability("build", buildName);
 		sauceLabs.setCapability("seleniumVersion", SeleniumVersion);
 		sauceLabs.setCapability("username", userrname);
@@ -28,7 +28,7 @@ public class CloudConnection {
 		
 		cap.setCapability("sauce:options", sauceLabs);
 		cap.setCapability("browserVersion", browserVersion);
-		cap.setCapability("platformName", "Linux");
+		cap.setCapability("platformName", oSName);
 		switch (browserName.toUpperCase()) {
 		case "CHROME":
 			WebDriverManager.chromedriver().setup();
@@ -152,7 +152,7 @@ public class CloudConnection {
 			throw new BrowserException("Invalid Browser Name "+browserName);
 		}
 		
-		driver = new RemoteWebDriver(new URL(url), cap);
+		driver = new RemoteWebDriver(new URL("https://"+userrname+":"+accessKey+url), cap);
 		return driver;
 	}
 }
