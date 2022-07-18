@@ -2,6 +2,8 @@ package testSteps;
 
 import java.io.IOException;
 
+import org.openqa.selenium.WebDriver;
+
 import com.Baseclass.WebTestBase;
 import com.Reports.ReportStatus;
 import com.Reports.Reports;
@@ -15,12 +17,16 @@ import com.runner.TestRunner;
 
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class ExpenseIncome extends WebTestBase{
-	
+
 	WebTestBase webTestBase;
 	AppiumDriver driver;
 	ExpOrInc expOrInc;
@@ -29,23 +35,31 @@ public class ExpenseIncome extends WebTestBase{
 	PieChartElements chartElements;
 	String CategoryName, amount;
 	Transfer transfer;
+	Scenario scenario;
+	Reports reports = new Reports();
+	static ExtentTest createTest;
+	
+	@Before
+	public void before(Scenario scenario) {
+		this.scenario = scenario;
+		System.out.println("Scenario Name: "+scenario.getName());
+	}
 	
 	@Given("user launches the application")
 	public void user_launches_the_application() throws BrowserException, IOException, InterruptedException {
 		driver = MobileDevice(getAppName());
+		createTest = runner.createTest(scenario.getName(), "Track Expenses or Income", driver);
 		webTestBase = new WebTestBase(driver);
-		ExtentTest createTest = runner.createTest("Add Epense/Income", "Track Expenses or Income", driver);
-		Reports.log(createTest, "Starting android app", ReportStatus.pass);
-		expOrInc = new ExpOrInc(driver, createTest);
-		activity = new StartActivity(driver, createTest);
-		chartElements = new PieChartElements(driver, createTest);
+		ExtentTest node = new Reports().createNode(createTest, "Launching App..!");
+		Reports.log(node, "Starting android app", ReportStatus.pass);
+		expOrInc = new ExpOrInc(driver, node);
+		activity = new StartActivity(driver, node);
+		chartElements = new PieChartElements(driver, node);
 		activity.clickGetStarted();
 	}
 	
-	@Given("user clicks on Expense button to add expense")
+	@Given("user clicks on Expense button to add expense$")
 	public void user_clicks_on_button_to_add_expense() throws IOException {
-		ExtentTest createTest = runner.createTest("Add Epense/Income", "Track Expenses or Income", driver);
-		
 		ExtentTest test = new Reports().createNode(createTest, "Addlication Started....!!!");
 		Reports.log(test, "Starting android app", ReportStatus.pass);
 		expOrInc.clickExpenseOrIncome("Expense");
@@ -77,9 +91,10 @@ public class ExpenseIncome extends WebTestBase{
 	
 	@Given("user clicks on transferIcon")
 	public void user_clicks_on_transferIcon() throws IOException {
-		ExtentTest createTest = runner.createTest("Transfer", "Transferring money", driver);
-		transfer = new Transfer(driver, createTest);
+		ExtentTest createNode = reports.createNode(createTest, "Transferring money");
+		transfer = new Transfer(driver, createNode);
 		transfer.clickDots();
+		Reports.log(createNode, "Clicked 3 Dots", ReportStatus.Pass );
 	}
 	
 	@When("user enters in {string} and click on back")

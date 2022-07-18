@@ -16,7 +16,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,6 +32,8 @@ import com.testNgClass.BrowserDriver;
 import enumVariales.AlertBox;
 import enumVariales.KeyBoard;
 import enumVariales.SelectBy;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.TapOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class WebTestBase extends BrowserDriver{
@@ -43,13 +44,14 @@ public class WebTestBase extends BrowserDriver{
 	private static Actions actions;
 	private static Robot robot;
 	private static JavascriptExecutor executor;
-	private static TouchActions touchActions;
 	
 	public WebTestBase() {}
 	
 	public WebTestBase(WebDriver drivers) {
 		driver = drivers;
 	}
+	
+	
 	
 	//public static DataProviders dp = new DataProviders(drivers);
 	//private static WebDriver chrome, firefox, ieDriver, safari, opera;
@@ -132,11 +134,6 @@ public class WebTestBase extends BrowserDriver{
 	
 	public Set<String> getWindowHandles(){
 		return driver.getWindowHandles();
-	}
-	
-	public void longPress(WebElement element) {
-		touchActions = new TouchActions(driver);
-		touchActions.longPress(element);
 	}
 	
 	public void selectByValueOrVisibletext(SelectBy by, WebElement element, String text) {

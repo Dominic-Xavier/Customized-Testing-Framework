@@ -37,8 +37,7 @@ public class TestRunner extends AbstractTestNGCucumberTests {
 	
 	public ExtentTest createTest(String testName, String description, WebDriver driver) {
 		createTest = reports.createTest(testName, description, driver);
-		ExtentTest createNode = reports.createNode(createTest, description);
-		return createNode;
+		return createTest;
 	}
 	
 	public ExtentTest getTest() {

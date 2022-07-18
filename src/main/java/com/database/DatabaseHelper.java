@@ -26,14 +26,14 @@ public class DatabaseHelper extends DataProviders{
 	private FileReader fileReader;
 	private Connection con;
 	private Statement createStatement;
-	private DatabaseHelper helper;
+	private static DatabaseHelper helper;
 	//Add Multiple Lists If u want to store data
 	private List<String> datas = new ArrayList<>();
 	private Map<String, List<String>> map = new HashMap<>();
 	
 	private DatabaseHelper() {}
 	
-	public synchronized DatabaseHelper getDatabaseHelper() {
+	public static synchronized DatabaseHelper getDatabaseHelper() {
 		if(helper==null) 
 			helper = new DatabaseHelper();
 		return helper;
@@ -57,10 +57,13 @@ public class DatabaseHelper extends DataProviders{
 		String dbname = readProperties.getProperty("dbname");
 		String portnumber = readProperties.getProperty("portnumber");
 		
-		System.out.println("URL is: "+dbURL+host+":"+portnumber+"/"+dbname+","+user+","+password);
+		//System.out.println("URL is: "+dbURL+host+":"+portnumber+"/"+dbname+","+user+","+password);
+		String connectionString = dbURL+host+"/"+dbname+ "?user=" + user + "&password=" + password + "&useUnicode=true&characterEncoding=UTF-8";
+		System.out.println("URL is: "+connectionString);
 		
 		//con = DriverManager.getConnection("jdbc:mysql://"+host+":"+portnumber+"/"+dbname+","+user+","+password);
-		//createStatement = con.createStatement();
+		con = DriverManager.getConnection(connectionString);
+		createStatement = con.createStatement();
 	}
 	
 	public Map<String, List<String>> readDatas(String Query, String ColumnName) throws SQLException, ClassNotFoundException, IOException {
@@ -78,11 +81,12 @@ public class DatabaseHelper extends DataProviders{
 	
 	public String readData(String Query, String ColumnName) throws SQLException, ClassNotFoundException, IOException {
 		connectToDatabase();
+		String data = null;
 		ResultSet executeQuery = createStatement.executeQuery(Query);
 		while(executeQuery.next()) {
-			String data = executeQuery.getString(ColumnName);
+			data = executeQuery.getString(ColumnName);
 			datas.add(data);
 		}
-		return ColumnName;
+		return data;
 	}
 }

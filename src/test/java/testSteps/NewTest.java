@@ -20,6 +20,11 @@ import enumVariales.CloudPlatform;
 
 public class NewTest extends WebTestBase{
 	
+	public NewTest(WebDriver drivers) {
+		super(drivers);
+		// TODO Auto-generated constructor stub
+	}
+
 	WebDriver driver;
 	
 	@Test
