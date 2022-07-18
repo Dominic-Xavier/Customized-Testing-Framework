@@ -9,7 +9,7 @@ import java.sql.Statement;
 import com.Baseclass.WebTestBase;
 import com.database.DatabaseHelper;
 
-public class A extends WebTestBase{
+public class DatabaseTest extends WebTestBase{
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
 		String query = dp.getQuery("sample Name");
