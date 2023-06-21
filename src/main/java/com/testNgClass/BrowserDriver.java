@@ -7,14 +7,15 @@ import java.net.URL;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -22,7 +23,9 @@ import org.testng.annotations.Test;
 import com.Baseclass.CloudConnection;
 import com.Baseclass.DesktopTestBase;
 import com.Baseclass.MobileTestBase;
+import com.Reports.Reports;
 import com.customException.BrowserException;
+import com.customException.FolderNotCreated;
 import com.excelSheet.DataProviders;
 
 import enumVariales.AUTOMATOR;
@@ -39,6 +42,7 @@ public class BrowserDriver extends DataProviders {
 	private static String browserName;
 	public static DataProviders dp = new DataProviders();
 	public static AppiumDriver androidDriver;
+	private static Reports reports;
 	
 	@BeforeClass
 	public WebDriver getRemoteDriver() throws IOException {
@@ -87,12 +91,19 @@ public class BrowserDriver extends DataProviders {
 	}
 	
 	//User to launch WebApp
-	public static WebDriver Initialize(String browserName, String URL) throws BrowserException, IOException {
+	public static WebDriver Initialize(String browserName, String URL) throws BrowserException, IOException, FolderNotCreated {
 		System.err.println("Browser name in Initialize is "+browserName);
+		reports = new Reports();
+		reports.createReport("Run_");
 		switch (browserName.toUpperCase()) {
 		case "CHROME":
 			WebDriverManager.chromedriver().setup();
-			WebDriver chrome = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--remote-allow-origins=*");
+			String proxy = "212.83.143.191:36996";
+			options.addArguments("--proxy-server=http://" + proxy);
+			//System.setProperty("webdriver.chrome.driver", "./src/main/resources/browserDrivers/chromedriver.exe");
+			WebDriver chrome = new ChromeDriver(options);
 			chrome.manage().window().maximize();
 			chrome.get(URL);
 			driver = chrome;
@@ -129,14 +140,6 @@ public class BrowserDriver extends DataProviders {
 			edge.get(URL);
 			driver = edge;
 		return edge;
-			
-		case "OPERA":
-			WebDriverManager.operadriver().setup();
-			WebDriver opera = new OperaDriver();
-			opera.manage().window().maximize();
-			opera.get(URL);
-			driver = opera;
-		return opera;
 		
 		case "DESKTOP":
 			driver = new DesktopTestBase().getWiniumDriver();

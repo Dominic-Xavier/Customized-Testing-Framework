@@ -1,4 +1,4 @@
-package com.Baseclass;
+ package com.Baseclass;
 
 import java.time.Duration;
 import java.util.Set;
@@ -16,7 +16,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -201,8 +200,6 @@ public class WebTestBase extends BrowserDriver{
 		driver.navigate().back();
 	}
 	
-	
-	
 	public void pressEnter() {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
@@ -343,6 +340,60 @@ public class WebTestBase extends BrowserDriver{
 				robot.keyPress(KeyEvent.VK_BACK_SPACE);
 				robot.keyRelease(KeyEvent.VK_BACK_SPACE);
 			break;
+		}
+	}
+	
+	public void clickElement(WebElement element) {
+		//this.explicitWait(60, element);
+		this.forBrowserReadyState();
+		this.forBrowserJQueryReadyState();
+		element.click();
+	}
+	
+	public void type(WebElement element, String text) {
+		//this.explicitWait(60, element);
+		this.forBrowserReadyState();
+		this.forBrowserJQueryReadyState();
+		element.sendKeys(text);
+	}
+	
+	public void forBrowserReadyState() {
+		int i = 1;
+		
+		while(i < 50) {
+			while(true) {
+				try {
+					executor = (JavascriptExecutor)driver;
+					String pageLoadStatus = (String)executor.executeScript("return document.readyState", new Object[0]);
+					if(!pageLoadStatus.equals("complete")) {
+						continue;
+					}
+				}catch(Exception e) {
+					
+				}
+				++i;
+				break;
+			}
+		}
+	}
+	
+	public void forBrowserJQueryReadyState() {
+		int i = 1;
+		
+		while(i < 50) {
+			while(true) {
+				try {
+					executor = (JavascriptExecutor)driver;
+					Boolean pageLoadStatus = (Boolean)executor.executeScript("return jQuery.active==0", new Object[0]);
+					if(!pageLoadStatus) {
+						continue;
+					}
+				}catch(Exception e) {
+					
+				}
+				++i;
+				break;
+			}
 		}
 	}
 	

@@ -11,6 +11,8 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
 
 public class DataProviders {
 	
@@ -88,5 +90,49 @@ public class DataProviders {
 		
 		getExcelSheet(Parameter.DATABASE_FILE_NAME.getKey(), Parameter.DATABASE_SHEET__NAME.getKey());
 		return map.get(key);
+	}
+	
+	@DataProvider(name = "TestData")
+	public synchronized String[][] getTestData() throws IOException{
+		return getTestData(Parameter.TEST_DATA_FILE_NAME.getKey(), Parameter.TEST_DATA_SHEET_NAME.getKey());
+	}
+	
+	private String[][] getTestData(String filePath, String sheetName) throws IOException{
+		inputStream = new FileInputStream(new File(filePath));
+		workbook = new XSSFWorkbook(inputStream);
+		sheet = workbook.getSheet(sheetName);
+		String value = null;
+		//int totalcolumns = 2;
+		int totalRows = sheet.getPhysicalNumberOfRows();
+		System.out.println("Total No Of Rows in Test data "+totalRows);
+		int totalcolumns = sheet.getRow(0).getPhysicalNumberOfCells();
+		values = new String[totalRows][totalcolumns];
+		System.out.println("Values in Test Data");
+		for (int i=1; i<totalRows; i++) {
+			Row rows = sheet.getRow(i);
+			//int totalcolumns = sheet.getRow(i).getPhysicalNumberOfCells();
+			for(int j=0;j<totalcolumns;j++) {
+				Cell cell = rows.getCell(j);
+				switch (cell.getCellType()) {
+					case NUMERIC:
+						int numericCellValue = (int)cell.getNumericCellValue();
+						value = String.valueOf(numericCellValue);
+						values[i-1][j] = value;
+					break;
+					
+					case STRING:
+						value = cell.getStringCellValue();
+						values[i-1][j] = value;
+					break;
+	 				
+					case BOOLEAN:
+						value = String.valueOf(cell.getBooleanCellValue());
+						values[i-1][j] = value;
+					break;
+				}
+				System.out.println(value);
+			}
+		}
+		return values;
 	}
 }
