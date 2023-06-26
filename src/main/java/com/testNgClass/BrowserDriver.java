@@ -1,16 +1,20 @@
 package com.testNgClass;
 
+import java.awt.AWTException;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -23,6 +27,7 @@ import org.testng.annotations.Test;
 import com.Baseclass.CloudConnection;
 import com.Baseclass.DesktopTestBase;
 import com.Baseclass.MobileTestBase;
+import com.Baseclass.WebTestBase;
 import com.Reports.Reports;
 import com.customException.BrowserException;
 import com.customException.FolderNotCreated;
@@ -43,9 +48,11 @@ public class BrowserDriver extends DataProviders {
 	public static DataProviders dp = new DataProviders();
 	public static AppiumDriver androidDriver;
 	private static Reports reports;
+	private static WebTestBase testBase;
 	
 	@BeforeClass
 	public WebDriver getRemoteDriver() throws IOException {
+		testBase = new WebTestBase();
 		System.err.println("Selenium Grid required? "+dp.getData("Selenium Grid"));
 		if(dp.getData("Selenium Grid").toLowerCase().equals("yes")) {
 			DesiredCapabilities cap = new DesiredCapabilities();
@@ -91,23 +98,40 @@ public class BrowserDriver extends DataProviders {
 	}
 	
 	//User to launch WebApp
-	public static WebDriver Initialize(String browserName, String URL) throws BrowserException, IOException, FolderNotCreated {
+	public static WebDriver Initialize(String browserName, String URL) throws BrowserException, IOException, FolderNotCreated, AWTException {
 		System.err.println("Browser name in Initialize is "+browserName);
 		reports = new Reports();
 		reports.createReport("Run_");
 		switch (browserName.toUpperCase()) {
-		case "CHROME":
+		case "CHROME":{
 			WebDriverManager.chromedriver().setup();
+			Proxy proxyServer = new Proxy();
+			//proxyServer.setHttpProxy("137.184.142.151:3128");
+			proxyServer.setHttpProxy("https://20.219.235.172:3129");
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--remote-allow-origins=*");
-			String proxy = "212.83.143.191:36996";
-			options.addArguments("--proxy-server=http://" + proxy);
-			//System.setProperty("webdriver.chrome.driver", "./src/main/resources/browserDrivers/chromedriver.exe");
+			String proxy = "https://157.230.9.235:3128";
+			
+			//options.addExtensions(new File("C:\\Users\\haroo\\Downloads\\Free-VPN-for-ChromeVPN-Proxy-VeePN.crx"));
+			//options.addArguments("--proxy-server=https://137.184.142.151:3128");
+			options.setProxy(proxyServer);
+			//options.addArguments("-proxy-server=%s" + proxy);
+			
 			WebDriver chrome = new ChromeDriver(options);
 			chrome.manage().window().maximize();
-			chrome.get(URL);
-			driver = chrome;
-		return chrome;
+			
+			while(true) {
+				try {
+					chrome.get(URL);
+					driver = chrome;
+					break;
+				} catch (Exception e) {
+					testBase.refresh();
+				}
+			}
+			return chrome;
+		}
+			
 		
 		case "FIREFOX":
 			WebDriverManager.firefoxdriver().setup();

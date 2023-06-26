@@ -6,6 +6,8 @@ import java.util.Set;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -43,6 +45,7 @@ public class WebTestBase extends BrowserDriver{
 	private static Actions actions;
 	private static Robot robot;
 	private static JavascriptExecutor executor;
+	private static HttpURLConnection urlConnection;
 	
 	public WebTestBase() {}
 	
@@ -131,8 +134,20 @@ public class WebTestBase extends BrowserDriver{
 		acceptAlert();
 	}
 	
+	public void refresh() throws AWTException {
+		robot = new Robot();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_F5);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_F5);
+	}
+	
 	public Set<String> getWindowHandles(){
 		return driver.getWindowHandles();
+	}
+	
+	public void refreshPage() {
+		driver.navigate().refresh();
 	}
 	
 	public void selectByValueOrVisibletext(SelectBy by, WebElement element, String text) {
@@ -289,6 +304,20 @@ public class WebTestBase extends BrowserDriver{
 	public void javaScript(String script) {
 		executor = (JavascriptExecutor) driver;
 		executor.executeAsyncScript(script);
+	}
+	
+	public boolean checkBrokenURL(String URL) {
+		try {
+			urlConnection = (HttpURLConnection)(new URL(URL).openConnection());
+			urlConnection.setRequestMethod("HEAD");
+			int responseCode = urlConnection.getResponseCode();
+			if(responseCode>=400) 
+				return false;
+			else
+				return true;
+		}catch (Exception e) {
+			return false;
+		}
 	}
 	
 	public void keyBoardOperations(KeyBoard keyBoard) throws AWTException {

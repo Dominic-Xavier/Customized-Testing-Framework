@@ -1,5 +1,6 @@
 package com.bsa;
 
+import java.awt.AWTException;
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,7 @@ public class BSA extends WebTestBase{
 	WebDriver driver;
 	
 	@BeforeMethod
-	public void setup() throws BrowserException, IOException, FolderNotCreated {
+	public void setup() throws BrowserException, IOException, FolderNotCreated, AWTException {
 		driver = Initialize(getAppName(), dp.getData("URL"));
 		reports = new Reports();
 		testBase = new WebTestBase(driver);
@@ -37,41 +38,65 @@ public class BSA extends WebTestBase{
 	
 	@Test(dataProvider = "TestData", dataProviderClass = DataProviders.class)
 	public void Test(String user, String gender, String region, String month, String day, String year,
-			String country, String state, String city, String zipCode, String email, String userName, String passWord) throws BrowserException, IOException, FolderNotCreated, InterruptedException {
+			String country, String state, String city, String zipCode, String email, String userName, String passWord) throws BrowserException, IOException, FolderNotCreated, InterruptedException, AWTException {
 		ExtentTest createTest = reports.createTest("Test case 1", "Verify user can able to Sign UP", driver);
-		clickElement(bsaReg.acceptCookies);
+		//clickElement(bsaReg.acceptCookies);
+		
 		clickElement(bsaReg.signUP);
+		while(true) {
+			try {
+				type(bsaReg.userName, user);
+				break;
+			} catch (Exception e) {
+				refresh();
+			}
+		}
+		
 		Reports.log(createTest, "User Registration", ReportStatus.Pass);
-		type(bsaReg.userName, user);
+		
 		clickElement(bsaReg.signUP);
 		Reports.log(createTest, "After clicking sign UP", ReportStatus.Pass);
-		//Selecting Gender
-		clickElement(bsaReg.selectSpan(gender));
-		Reports.log(createTest, "Clicking Next", ReportStatus.Pass);
-		clickElement(bsaReg.selectSpan("Next"));
-		clickElement(bsaReg.selectSpan(region));
-		Reports.log(createTest, "Clicking Next", ReportStatus.Pass);
-		clickElement(bsaReg.selectSpan("Next"));
-		//clickElement(bsaReg.selectDiv("Month"));
 		
-		Reports.log(createTest, "Birth Date", ReportStatus.Pass);
-		bsaReg.clickCalender("Month", month);
 		
-		bsaReg.clickCalender("Day", day);
+		//Thread.sleep(7000);
 		
-		bsaReg.clickCalender("Year", year);
+		while(true) {
+			try {
+				//Selecting Gender
+				clickElement(bsaReg.selectSpan(gender));
+				
+				//clickElement(bsaReg.selectSpan(gender));
+				Reports.log(createTest, "Clicking Next", ReportStatus.Pass);
+				clickElement(bsaReg.selectSpan("Next"));
+				clickElement(bsaReg.selectSpan(region));
+				Reports.log(createTest, "Clicking Next", ReportStatus.Pass);
+				clickElement(bsaReg.selectSpan("Next"));
+				//clickElement(bsaReg.selectDiv("Month"));
+				
+				Reports.log(createTest, "Birth Date", ReportStatus.Pass);
+				bsaReg.clickCalender("Month", month);
+				
+				bsaReg.clickCalender("Day", day);
+				
+				bsaReg.clickCalender("Year", year);
+				
+				Reports.log(createTest, "Filled Details", ReportStatus.Pass);
+				
+				clickElement(bsaReg.selectSpan("Next"));
+				
+				Reports.log(createTest, "Country Details", ReportStatus.Pass);
+				Thread.sleep(1000);
+				clickElement(bsaReg.selectDiv("Country"));
+				bsaReg.selectCountry(country);
+				clickElement(bsaReg.selectDiv("State / Province"));
+				bsaReg.clickCalender("State / Province", state);
+				break;
+			} catch (Exception e) {
+				refresh();
+			}
+		}
 		
-		Reports.log(createTest, "Filled Details", ReportStatus.Pass);
-		
-		clickElement(bsaReg.selectSpan("Next"));
-		
-		Reports.log(createTest, "Country Details", ReportStatus.Pass);
-		clickElement(bsaReg.selectDiv("Country"));
-		bsaReg.selectCountry(country);
-		
-		Thread.sleep(2000);
-		
-		bsaReg.clickCalender("State / Province", state);
+		//bsaReg.clickCalender("State / Province", state);
 		type(bsaReg.city, city);
 		type(bsaReg.zipCode, zipCode);
 		clickElement(bsaReg.selectSpan("Next"));
