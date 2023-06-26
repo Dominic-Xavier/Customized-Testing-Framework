@@ -13,7 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import groovyjarjarantlr4.v4.runtime.tree.xpath.XPath;
 
 public class BSARegistrationPage {
-	private WebDriver driver;
+	WebDriver driver;
 	public BSARegistrationPage(WebDriver driver){
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
