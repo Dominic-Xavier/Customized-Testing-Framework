@@ -1,5 +1,6 @@
 package com.testNgClass;
 
+import java.awt.AWTException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,6 +24,7 @@ import org.testng.annotations.Test;
 import com.Baseclass.CloudConnection;
 import com.Baseclass.DesktopTestBase;
 import com.Baseclass.MobileTestBase;
+import com.Baseclass.WebTestBase;
 import com.Reports.Reports;
 import com.customException.BrowserException;
 import com.customException.FolderNotCreated;
@@ -43,9 +45,11 @@ public class BrowserDriver extends DataProviders {
 	public static DataProviders dp = new DataProviders();
 	public static AppiumDriver androidDriver;
 	private static Reports reports;
+	private static WebTestBase testBase;
 	
 	@BeforeClass
 	public WebDriver getRemoteDriver() throws IOException {
+		testBase = new WebTestBase();
 		System.err.println("Selenium Grid required? "+dp.getData("Selenium Grid"));
 		if(dp.getData("Selenium Grid").toLowerCase().equals("yes")) {
 			DesiredCapabilities cap = new DesiredCapabilities();
@@ -91,7 +95,7 @@ public class BrowserDriver extends DataProviders {
 	}
 	
 	//User to launch WebApp
-	public static WebDriver Initialize(String browserName, String URL) throws BrowserException, IOException, FolderNotCreated {
+	public static WebDriver Initialize(String browserName, String URL) throws BrowserException, IOException, FolderNotCreated, AWTException {
 		System.err.println("Browser name in Initialize is "+browserName);
 		reports = new Reports();
 		reports.createReport("Run_");
@@ -100,12 +104,23 @@ public class BrowserDriver extends DataProviders {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--remote-allow-origins=*");
+			options.addArguments("disable-notifications");
 			String proxy = "212.83.143.191:36996";
-			options.addArguments("--proxy-server=http://" + proxy);
+			//options.addArguments("--proxy-server=http://" + proxy);
 			//System.setProperty("webdriver.chrome.driver", "./src/main/resources/browserDrivers/chromedriver.exe");
+			
 			WebDriver chrome = new ChromeDriver(options);
 			chrome.manage().window().maximize();
-			chrome.get(URL);
+			while(true) {
+				try {
+					chrome.get(URL);
+					break;
+				} catch (Exception e) {
+					testBase.refresh();
+				}
+				
+			}
+			
 			driver = chrome;
 		return chrome;
 		

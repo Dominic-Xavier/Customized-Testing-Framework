@@ -135,6 +135,14 @@ public class WebTestBase extends BrowserDriver{
 		return driver.getWindowHandles();
 	}
 	
+	public void refresh() throws AWTException {
+		robot = new Robot();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_F5);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_F5);
+	}
+	
 	public void selectByValueOrVisibletext(SelectBy by, WebElement element, String text) {
 		switch (by) {
 		case SELECT_BY_VALUE:
@@ -344,20 +352,25 @@ public class WebTestBase extends BrowserDriver{
 	}
 	
 	public void clickElement(WebElement element) {
-		//this.explicitWait(60, element);
-		this.forBrowserReadyState();
-		this.forBrowserJQueryReadyState();
+		this.explicitWait(60, element);
+		//this.forBrowserReadyState();
+		//this.forBrowserJQueryReadyState();
 		element.click();
 	}
 	
 	public void type(WebElement element, String text) {
-		//this.explicitWait(60, element);
-		this.forBrowserReadyState();
-		this.forBrowserJQueryReadyState();
+		this.explicitWait(60, element);
+		//this.forBrowserReadyState();
+		//this.forBrowserJQueryReadyState();
 		element.sendKeys(text);
 	}
 	
-	public void forBrowserReadyState() {
+	public void moveToOffset(WebElement element, int xOffSet, int yOffSet) {
+		actions = new Actions(driver);
+		actions.moveToElement(element, xOffSet, yOffSet).build().perform();
+	}
+	
+	private void forBrowserReadyState() {
 		int i = 1;
 		
 		while(i < 50) {
@@ -377,7 +390,7 @@ public class WebTestBase extends BrowserDriver{
 		}
 	}
 	
-	public void forBrowserJQueryReadyState() {
+	private void forBrowserJQueryReadyState() {
 		int i = 1;
 		
 		while(i < 50) {

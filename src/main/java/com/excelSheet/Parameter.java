@@ -7,7 +7,8 @@ public enum Parameter {
 	DATABASE_FILE_NAME("./dataFactory.xls"),
 	DATABASE_SHEET__NAME("Query"),
 	TEST_DATA_FILE_NAME("./TestData.xlsx"),
-	TEST_DATA_SHEET_NAME("Data");
+	TEST_DATA_SHEET_NAME("Data"),
+	REG_DATA_SHEET_NAME("RegData");
 	
 	private final String key;
 	

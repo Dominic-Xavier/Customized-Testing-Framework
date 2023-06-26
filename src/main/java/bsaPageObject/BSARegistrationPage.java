@@ -10,12 +10,16 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.Baseclass.WebTestBase;
+
 import groovyjarjarantlr4.v4.runtime.tree.xpath.XPath;
 
 public class BSARegistrationPage {
 	WebDriver driver;
+	WebTestBase testBase;
 	public BSARegistrationPage(WebDriver driver){
 		this.driver = driver;
+		testBase = new WebTestBase();
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -53,9 +57,24 @@ public class BSARegistrationPage {
 	@FindBy(xpath = "//input[@placeholder='Confirm Password']")
 	public WebElement confirmPassword;
 	
+	@FindBy(xpath = "createprofile-profession-input")
+	public WebElement occupation;
+	
+	@FindBy(id = "createprofile-ambition-select")
+	public WebElement slidingBar;
+	
+	@FindBy(xpath = "//button[@type='button']")
+	public WebElement letsGo;
+	
+	public WebElement dateSmokerOrHavingKids(String text) {
+		return driver.findElement(By.xpath("//span[text()='"+text+"'][1]"));
+	}
+	
 	public WebElement selectSpan(String text) {
 		return driver.findElement(By.xpath("//span[text()='"+text+"']"));
 	}
+	
+	
 	
 	public WebElement selectDiv(String text) {
 		return driver.findElement(By.xpath("//div[text()='"+text+"']"));
@@ -75,6 +94,7 @@ public class BSARegistrationPage {
 	public void clickCalender(String date, String dayMonYear) {
 		//date represents Date or month or year
 		//dayMonYear represents Which Date or month or year
+		testBase.explicitWait(60, selectDiv(date));
 		selectDiv(date).click();
 		for (WebElement webElement : calenderDays) {
 			if(webElement.getText().equals(dayMonYear)) {
